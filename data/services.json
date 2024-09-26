@@ -1,0 +1,26 @@
+[
+	{
+		"title": "Savings Accounts",
+		"img": "/assets/imgs/serv-icons/3.png",
+		"desc": "Regular Savings Accounts: Earn interest on your deposits with flexible access and no monthly fees.",
+		"link": "/page-services-details"
+	},
+	{
+		"title": "Personal Loans",
+		"img": "/assets/imgs/serv-icons/4.png",
+		"desc": "Unsecured Personal Loans: Access funds without collateral for personal needs, with easy application and fast approval.",
+		"link": "/page-services-details"
+	},
+	{
+		"title": "Business Loan",
+		"img": "/assets/imgs/serv-icons/5.png",
+		"desc": "Live workshop where we define the main problems and challenges before building a strategic plan moving forward.",
+		"link": "/page-services-details"
+	},
+	{
+		"title": "Investment Opportunities:",
+		"img": "/assets/imgs/serv-icons/5.png",
+		"desc": "Cooperative Investments: Participate in community-focused investments that offer both financial returns and support local development.",
+		"link": "/page-services-details"
+	}
+]

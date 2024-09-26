@@ -1,0 +1,32 @@
+[
+	{
+		"img": "/assets/imgs/team/5.jpg",
+		"name": "Getnet Bekele",
+		"subName": "Chief Executive Officer"
+	},
+	{
+		"img": "/assets/imgs/team/t2.jpg",
+		"name": "Petros Alemayehu",
+		"subName": "Chief Financial Officer"
+	},
+	{
+		"img": "/assets/imgs/team/t3.jpg",
+		"name": "Samuel Tesfaye",
+		"subName": "Marketing Director"
+	},
+	{
+		"img": "/assets/imgs/team/t4.jpg",
+		"name": "Saba Tadesse",
+		"subName": "Operations Manager"
+	},
+	{
+		"img": "/assets/imgs/team/t2.jpg",
+		"name": "Genet Hailu",
+		"subName": "Human Resources Manager"
+	},
+	{
+		"img": "/assets/imgs/team/t3.jpg",
+		"name": "Ahmed Khaled",
+		"subName": "Human Resources Manager"
+	}
+]
