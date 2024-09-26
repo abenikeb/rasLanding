@@ -7,6 +7,7 @@ import { notification } from "antd";
 import { Input, Button, Alert, Form, Typography, Select } from "antd";
 
 const { Title } = Typography;
+const { Option } = Select;
 // Mock Array
 const students = [
 	{ id: "12345", name: "John Doe" },

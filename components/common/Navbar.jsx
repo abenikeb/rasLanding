@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 
 function Navbar() {
 	const [language, setLanguage] = useState("am"); // default to Amharic
-	const scrolled = useScroll(50);
+	const scrolled = useScroll(20);
 	const router = useRouter();
 
 	useEffect(() => {
@@ -79,7 +79,7 @@ function Navbar() {
 				scrolled ? "navbar-fixed" : ""
 			}`}>
 			<div className="container o-hidden">
-				<Link className="logo icon-img-100" href="#">
+				<Link className="logo icon-img-70" href="#">
 					<img src="/assets/imgs/logo-light.png" alt="logo" />
 				</Link>
 

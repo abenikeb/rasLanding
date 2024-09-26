@@ -14,12 +14,12 @@ function Footer() {
 						<div className="column md-mb50">
 							<h6 className="sub-title mb-30">አድራሻ</h6>
 							<h6 className="p-color fw-400">
-								የካ ኮተቤ 02 የኢትዮጵያ ንግድ ባንክ 2ኛ ፎቅ, #302
+								የካ ኮተቤ 02 የኢትዮጵያ ንግድ ባንክ 2ኛ ፎቅ, #217
 							</h6>
 							<h6 className="mt-30 mb-15">
 								<a href="#0">info@rasynergy.com</a>
 							</h6>
-							<a href="#0" className="underline">
+							<a href="tel:+251906904646" className="underline">
 								<span className="fz-22 main-color">+251 906904646</span>
 							</a>
 						</div>

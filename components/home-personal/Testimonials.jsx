@@ -68,11 +68,12 @@ function Testimonials() {
 						<SwiperSlide>
 							<div className="item">
 								<div className="cont">
-									<h6 className="sub-title mb-15">የፕሮጀክት አስተዳደር ጥራት</h6>
+									<h6 className="sub-title mb-15">የዲጂታል መታወቂያ ተጠቅሚ</h6>
 									<div className="text">
 										<p>
-											“ በዚህ ቦታ ውስጥ ለብዙ ሰዎች ቀጥሬያለሁ ዓመታት እና እኔ ይህን ደረጃ አይቼ አላውቅም
-											ሙያዊነት.”
+											“አሁን ላይ ለልጆቼ የዲጂታል መታወቂያ ተጠቅሚ ስሆን የልጆቻቼን የት/ቤት መግቢያና እና
+											መውጫ ሰዓት ባሉበት ቦታ ሆኜ በስልኬ በሚደርሰኝ ምልክት አማካኝነት መቆጣጠር ችያለው ይህም
+											ትልቅ እፎይታ አግኝቻለው::.”
 										</p>
 									</div>
 								</div>
@@ -86,7 +87,7 @@ function Testimonials() {
 										<div className="ml-20">
 											<h6 className="fz-18">አብርሃም ተክለማርያም</h6>
 											<span className="p-color opacity-8 fz-15 mt-5">
-												ራስሲነርጂ ደንበኛ
+												የተማሪ ወላጅ
 											</span>
 										</div>
 									</div>
@@ -99,8 +100,7 @@ function Testimonials() {
 									<h6 className="sub-title mb-15">የአቅርቦት ጥራት</h6>
 									<div className="text">
 										<p>
-											“ በዚህ ቦታ ውስጥ ለብዙ ሰዎች ቀጥሬያለሁ ዓመታት እና ይህን የሙያ ደረጃ አይቼ
-											አላውቅም.”
+											“በዚህ ቦታ ውስጥ ለብዙ ሰዎች ቀጥሬያለሁ ዓመታት እና ይህን የሙያ ደረጃ አይቼ አላውቅም.”
 										</p>
 									</div>
 								</div>

@@ -16,7 +16,7 @@
 	line-height: 1.8;
 	margin-bottom: 20px; /* or adjust as per preference */
 	word-spacing: 1px;
-	font-size: 1.2rem; /* Adjust the size to your preference */
+	font-size: 1.1rem; /* Adjust the size to your preference */
 }
 
 .text-bright {
@@ -2537,7 +2537,7 @@ img.left {
 }
 
 .icon-img-100 {
-	width: 130px;
+	width: 100px;
 }
 
 .icon-img-120 {
@@ -6573,6 +6573,8 @@ footer.clean-footer.crev .circle-blur-small {
 	text-transform: uppercase;
 	padding: 5px 15px;
 	margin: 2px;
+	color: #2f2f2f;
+	background-color: white;
 	border: 1px solid rgba(255, 255, 255, 0.1);
 	border-radius: 30px;
 }

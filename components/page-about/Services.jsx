@@ -31,19 +31,19 @@ function Services() {
 								<span className="num">01</span>
 								<div>
 									<span className="sub-title main-color mb-10">ተልዕኮ</span>
-									<h2>
-										በሰለጠነ እና በስነምግባር በታነፀ{" "}
-										<span className="fw-200"> ደህንነትን የሚያስተዳድሩበትን</span>
-									</h2>
+									{/* <h2>
+										አቅምን ያማከለ <span className="fw-200">ከፍተኛ ቅናሽ</span>
+									</h2> */}
 								</div>
 							</div>
 						</div>
 						<div className="col-lg-4">
 							<div className="text md-mb80">
 								<p>
-									ለትምህርት ተቋማት የተማሪን መታወቂያ እና ደህንነትን የሚያስተዳድሩበትን መንገድ ለመቀየር፣
-									በወላጆች እና በትምህርት ቤቶች መካከል በፈጠራ ቴክኖሎጂ የታገዘ እና ወጪ ቆጣቢ ቁሳቁሶችን
-									በመጠቀም ጠንካራ ግንኙነቶችን ማጎልበት።
+									ከፍተኛ ጥራት ያለው፣ አቅምን ባማከለ መልኩ ከትምህርት ቤቶች ጋር በመተባበር አስፈላጊ የትምህርት
+									ቁሳቁሶችን በከፍተኛ ቅናሽ በማቅረብ የወላጅ ህመም መቀነስ፣ እንዲሁም የህትመት እና የዲጂታል
+									መታወቂያ ካርድ መፍትሄዎችን በማቅረብ፣ የተማሪን ደህንነት የሚያጎለብት የወላጅ ቁጥጥርን የሚያቃልል
+									መፍቲዎችን ማቅረብ ነው::
 								</p>
 							</div>
 						</div>
@@ -64,18 +64,17 @@ function Services() {
 								<span className="num">02</span>
 								<div>
 									<span className="sub-title main-color mb-10">ርዕያችን</span>
-									<h2>
-										የተማሪን መታወቂያ <span className="fw-200">ወጪ ቆጣቢ</span>
-									</h2>
+									{/* <h2>
+										ፈጠራ ቴክኖሎጂ<span className="fw-200">ትምህርት ዘርፉ ሚና</span>
+									</h2> */}
 								</div>
 							</div>
 						</div>
 						<div className="col-lg-4">
 							<div className="text md-mb80">
 								<p>
-									ከፍተኛ ጥራት ያለው፣ ወጪ ቆጣቢ የህትመት እና የዲጂታል መታወቂያ ካርድ መፍትሄዎችን ለማቅረብ፣
-									የተማሪን ደህንነት የሚያጎለብት እና የወላጅ ቁጥጥርን የሚያቃልል፣ ከትምህርት ቤቶች ጋር በመተባበር
-									አስፈላጊ ቁሳቁሶችን በከፍተኛ ቅናሽ ለማቅረብ።
+									በወላጆች እና በትምህርት ቤቶች መካከል በፈጠራ ቴክኖሎጂ በመታገዘ ጠንካራ ግንኙነቶችን ማጎልበት
+									በዚህም በትምህርት ዘርፉ ላይ ከፍተኛ ሚና መጫወት።
 								</p>
 							</div>
 						</div>
@@ -96,9 +95,10 @@ function Services() {
 								<span className="num">03</span>
 								<div>
 									<span className="sub-title main-color mb-10">ዓላማዎቻችን</span>
-									<h2>
-										የፋይናንስ / <span className="fw-200">ትምህርትና ስልጠና በመስጠት</span>
-									</h2>
+									{/* <h2>
+										የተማሪን ደህንነት የሚያበረታቱ /{" "}
+										<span className="fw-200">ማህበረሰብ ተሳትፎን የሚደግፉ</span>
+									</h2> */}
 								</div>
 							</div>
 						</div>

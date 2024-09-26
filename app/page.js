@@ -9,9 +9,7 @@ import Navbar from "@/components/common/Navbar";
 import Script from "next/script";
 import Header from "@/components/home-personal/Header";
 import Clients from "@/components/common/Clients";
-
 import Blog from "@/components/home-digital-agency/Blog";
-
 import Testimonials from "@/components/home-personal/Testimonials";
 import Marq from "@/components/home-personal/Marq";
 import About from "@/components/home-personal/About";
@@ -36,7 +34,7 @@ export const metadata = {
 export default function Home() {
 	return (
 		<body className="home-personal">
-			<LoadingScreen />
+			{/* <LoadingScreen /> */}
 			<Cursor />
 			<ProgressScroll />
 			<Lines />

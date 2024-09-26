@@ -55,7 +55,7 @@ function Portfolio() {
 							<span className="sub-title main-color mb-5">ተመራጭ የሚያደርጉን</span>
 							<h3 className="fw-600 fz-50 text-u d-rotate wow">
 								<span className="rotate-text secondary-color">
-									ዋና ዋና <span className="fw-200">ተግባራቶቻችን</span>
+									ዋና ዋና <span className="fw-200">አገልግሎቶቻችን</span>
 								</span>
 							</h3>
 						</div>
@@ -77,55 +77,20 @@ function Portfolio() {
 									<div>
 										<div className="mb-15">
 											<a href="/portfolio-grid" className="tag">
-												የተማሪዎች
-											</a>
-											<a href="/portfolio-grid" className="tag">
-												ቦርሳ
-											</a>
-										</div>
-										<h4>የትምህርት ቤት ቦርሳዎችና እና ዩኒፎርሞች</h4>
-									</div>
-									<div>
-										<p>
-											ለተማሪዎች የተለያዩ የቅናሽ ምርቶች፣ ቦርሳዎች፣ የምሳ ዕቃዎች እና ዩኒፎርሞች፣ ለሁሉም
-											የተማሪዎቹ ስሞች እና የት/ቤት አርማዎች በግል የታተመባቸውን የትምህርት ቤት መገልገያ
-											መሳሪያዎች
-										</p>
-										<a href="/project-details" className="underline mt-15">
-											<span className="text main-color sub-title">
-												ዝርዝሮችን ይመልከቱ <i className="ti-arrow-top-right"></i>
-											</span>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div className="col-lg-7">
-								<div className="img">
-									<img src="/assets/imgs/works/1/2.jpg" alt="" />
-								</div>
-							</div>
-						</div>
-					</div>
-					<div className="card-item sub-bg">
-						<div className="row">
-							<div className="col-lg-5">
-								<div className="cont">
-									<div>
-										<div className="mb-15">
-											<a href="/portfolio-grid" className="tag">
 												ዲጂታል
 											</a>
 											<a href="/portfolio-grid" className="tag">
 												መታወቂያ
 											</a>
 										</div>
-										<h4>ዲጂታል መታወቂያ ካርድ መፍትሄዎች</h4>
+										<h4>የተማሪዎች ዲጂታል መታወቂያ ካርድ</h4>
 									</div>
+									<br />
 									<div>
 										<p>
-											ዲጂታል የተማሪ መታወቂያ ካርዶች የባር ኮድ የተገጠመላቸው ደህንነቱ የተጠበቀ የመዳረሻ
-											ቁጥጥር፣ ወላጆች የልጆቻቸውን ትምህርት ቤት መግቢያ እና መውጫ ባሉበት እንዲከታተሉ
-											ያስችላቸዋል።
+											QR ኮድ ያለው የተማሪ ልጅዎትን መረጃ የሚይዝ የዲጂታል መታወቂያ ሲሆኑ ለወላጆች በቀላሉ
+											የልጆቻቸውን የት/ቤት መግቢያና እና መውጫ ሰዓት ባሉበት ቦታ ሆነው በስልካቸው አማካኝነት
+											መቆጣጠር የሚችሉበት መፍትሄ አቅርበናል::
 										</p>
 										<a href="/project-details" className="underline mt-15">
 											<span className="text main-color sub-title">
@@ -142,6 +107,45 @@ function Portfolio() {
 							</div>
 						</div>
 					</div>
+
+					<div className="card-item sub-bg">
+						<div className="row">
+							<div className="col-lg-5">
+								<div className="cont">
+									<div>
+										<div className="mb-15">
+											<a href="/portfolio-grid" className="tag">
+												የተማሪዎች
+											</a>
+											<a href="/portfolio-grid" className="tag">
+												ቦርሳ
+											</a>
+										</div>
+										<h4>የትምህርት ቤት ቦርሳዎችና እና ዩኒፎርሞች</h4>
+									</div>
+									<br />
+									<div>
+										<p>
+											የትመህርት መገልገያ መሳሪያዎች የሆኑና የተማሪዎች ስሞች እና የት/ቤት አርማዎች በግል
+											የታተመባቸውን ቦርሳዎች፣ የምሳ ዕቃዎች ፣ ዩኒፎርሞች እና ደብተሮች በታላቅ ቅናሽ
+											አቅርበናል::
+										</p>
+										<a href="/project-details" className="underline mt-15">
+											<span className="text main-color sub-title">
+												ዝርዝሮችን ይመልከቱ <i className="ti-arrow-top-right"></i>
+											</span>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div className="col-lg-7">
+								<div className="img">
+									<img src="/assets/imgs/works/1/2.jpg" alt="" />
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<div className="card-item sub-bg">
 						<div className="row">
 							<div className="col-lg-5">
@@ -157,10 +161,11 @@ function Portfolio() {
 										</div>
 										<h4>የህትመት አገልግሎቶች</h4>
 									</div>
+									<br />
 									<div>
 										<p>
 											ልዩ ልዩ ፍላጎቶችን ለማሟላት የተዘጋጁ መታወቂያ ካርዶችን፣ ብሮሹሮችን እና የማስተዋወቂያ
-											እቃዎችን ጨምሮ የተለያዩ ቁሳቁሶች ከፍተኛ ጥራት ማተም።
+											እቃዎችን ጨምሮ የተለያዩ የህትመት ስራዎችን በከፍተኛ ጥራት እናቀርባለን::
 										</p>
 										<a href="/project-details" className="underline mt-15">
 											<span className="text main-color sub-title">

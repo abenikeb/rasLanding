@@ -16,7 +16,7 @@ function Numbers() {
 					<div className="col-lg-4 col-md-6">
 						<div className="item text-center md-mb50">
 							<div className="o-hidden">
-								<h3 className="stroke">67</h3>
+								<h3 className="stroke">20+</h3>
 							</div>
 							<h6 className="p-color sub-title secondary-color">
 								ፕሮጀክቶች ተጠናቀዋል
@@ -26,7 +26,7 @@ function Numbers() {
 					<div className="col-lg-4 col-md-6">
 						<div className="item text-center">
 							<div className="o-hidden">
-								<h3 className="stroke">17 +</h3>
+								<h3 className="stroke">5 +</h3>
 							</div>
 							<h6 className="p-color sub-title secondary-color">የሽልማት ስኬት</h6>
 						</div>
