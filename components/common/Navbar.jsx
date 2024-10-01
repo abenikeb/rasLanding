@@ -12,7 +12,8 @@ function Navbar() {
 
 	useEffect(() => {
 		// Read the language from cookies when the component mounts
-		const savedLanguage = Cookies.get("language") || "am";
+		// const savedLanguage = Cookies.get("language") || "am";
+		const savedLanguage = Cookies.get("am") || "am";
 		setLanguage(savedLanguage);
 
 		// if (savedLanguage === "en") {

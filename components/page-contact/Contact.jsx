@@ -191,14 +191,16 @@ function Contact() {
 							<h2 className="contact-title">አድራሻ</h2>
 							<div className="morinfo mt-50 pb-30 bord-thin-bottom secondary-color">
 								<h6 className="mb-15 section-title">ዋና ቅርንጫፍ አድራሻ</h6>
-								<p className="address-details">የካ ኮተቤ 02 3ኛ, #302</p>
+								<p className="address-details">
+									የካ ኮተቤ 02 የኢትዮጵያ ንግድ ባንክ 2ኛ ፎቅ, #207
+								</p>
 
 								{/* <!-- Main Branch Phone --> */}
 								<div className="contact-info mt-15">
 									<h6 className="contact-title">ስልክ</h6>
 									<p>
-										<a href="tel:+251913228892" className="contact-link">
-											+251 906 90 46 46 | +251 925 54 65 27
+										<a href="tel:+251906904646" className="contact-link">
+											+251 9 06 90 46 46 / +251 9 06 90 46 46
 										</a>
 									</p>
 								</div>

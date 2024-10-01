@@ -14,7 +14,7 @@ function Footer() {
 						<div className="column md-mb50">
 							<h6 className="sub-title mb-30">አድራሻ</h6>
 							<h6 className="p-color fw-400">
-								የካ ኮተቤ 02 የኢትዮጵያ ንግድ ባንክ 2ኛ ፎቅ, #217
+								የካ ኮተቤ 02 የኢትዮጵያ ንግድ ባንክ 2ኛ ፎቅ, #207
 							</h6>
 							<h6 className="mt-30 mb-15">
 								<a href="#0">info@rasynergy.com</a>

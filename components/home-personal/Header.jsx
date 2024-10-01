@@ -67,12 +67,14 @@ function Header() {
 					</div>
 					<div className="item">
 						<h6 className="sub-title mb-10">ስልክ :</h6>
-						<span className="p-color">+251 906 90 46 46 | 925 54 65 27</span>
+						<a href="tel:+251906904646" className="contact-link p-color">
+							+251 9 06 90 46 46 / +251 9 06 90 46 46
+						</a>
 					</div>
 					<div className="item">
 						<h6 className="sub-title mb-10">አድራሻ :</h6>
 						<span className="p-color">
-							የካ ኮተቤ 02 የኢትዮጵያ ንግድ ባንክ 2ኛ ፎቅ, #217
+							የካ ኮተቤ 02 የኢትዮጵያ ንግድ ባንክ 2ኛ ፎቅ, #207
 						</span>
 					</div>
 				</div>
