@@ -33,7 +33,7 @@ function Testimonials() {
 	return (
 		<section className="testim-modern section-padding sub-bg bord-top-grd bord-bottom-grd">
 			<div className="container">
-				<div className="sec-head mb-80">
+				<div className="sec-head mb-20 mt-20">
 					<div className="d-flex align-items-center">
 						<div>
 							<h3 className="fw-600 fz-50 text-u d-rotate wow">

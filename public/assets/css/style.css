@@ -9,6 +9,22 @@
 	font-style: normal;
 }
 
+.headerss {
+	background-image: url("/assets/imgs/header/full/p113.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	position: relative;
+}
+
+.headerss2 {
+	background-image: url("/assets/imgs/background/bg4_.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	position: relative;
+}
+
 /* about-us-content */
 
 .about-us-content {
@@ -17,11 +33,13 @@
 	margin-bottom: 20px; /* or adjust as per preference */
 	word-spacing: 1px;
 	font-size: 1.1rem; /* Adjust the size to your preference */
+	color: #2e2d2d;
 }
 
 .text-bright {
-	font-size: x-large;
-	font-weight: 500;
+	font-size: medium;
+	font-weight: 400;
+	color: #474646;
 }
 
 .fw-200 {
@@ -572,7 +590,7 @@ h2 {
 }
 
 h3 {
-	font-size: 30px;
+	font-size: 40px;
 }
 
 h4 {
@@ -4252,13 +4270,13 @@ body.loaded {
 }
 
 .sub-title {
-	font-size: 22px;
+	font-size: 25px;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 }
 
 .sub-titles {
-	font-size: 44px;
+	font-size: 50px;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 }
@@ -6545,6 +6563,9 @@ footer.clean-footer.crev .circle-blur-small {
 .portfolio-tab.crev .glry-img .tab-img:first-of-type {
 	position: relative;
 }
+.work-cards {
+	margin-top: -100px !important;
+}
 
 .work-card .card-item {
 	margin-bottom: 30px;
@@ -7068,7 +7089,7 @@ footer.clean-footer.crev .circle-blur-small {
 }
 
 .services-clas .item {
-	padding: 40px 30px;
+	padding: 40px 10px 30px 30px;
 	border-radius: 15px;
 }
 

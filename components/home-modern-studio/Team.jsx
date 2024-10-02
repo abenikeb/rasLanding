@@ -14,14 +14,14 @@ function Team() {
 		},
 		{
 			img: "/assets/imgs/team/t4.jpg",
-			name: "ሳሙኤል ተስፋዬ",
-			subName: "የግብይት ዳይሬክተር",
+			name: "አቤንኤዘር ከበደ",
+			subName: "ሶፍትዌር ዴቨሎፐር",
 		},
-		{
-			img: "/assets/imgs/team/t5.jpg",
-			name: "ተስፋዬ ታደሰ",
-			subName: "ኦፕሬሽንስ አስተዳዳሪ",
-		},
+		// {
+		// 	img: "/assets/imgs/team/t5.jpg",
+		// 	name: "ተስፋዬ ታደሰ",
+		// 	subName: "ኦፕሬሽንስ አስተዳዳሪ",
+		// },
 		// {
 		// 	img: "/assets/imgs/team/t2.jpg",
 		// 	name: "ገነት ሀይሉ",
@@ -37,24 +37,24 @@ function Team() {
 	return (
 		<section className="team-crev2 section-padding pb-90">
 			<div className="container">
-				<div className="sec-head mb-80">
+				<div className="sec-head mb-40">
 					<div className="d-flex align-items-center">
 						<div>
 							<span className="sub-title main-color mb-5">የቡድን አባሎቶቻችን</span>
 							<h3 className="fw-600 fz-50 text-u d-rotate wow">
-								<span className="rotate-text secondary-color">
-									ባለሙያዎቻችንን <span className="fw-200">ያግኙ.</span>
+								<span className="secondary-color">
+									ባለሙያዎቻችንን <span className="fw-200">ያግኙ!</span>
 								</span>
 							</h3>
 						</div>
-						<div className="ml-auto vi-more">
+						{/* <div className="ml-auto vi-more">
 							<a
 								href="/page-team"
 								className="butn butn-sm secondary-color butn-bord radius-30">
 								<span>ከእኛ ጋር ይቀላቀሉ</span>
 							</a>
 							<span className="icon ti-arrow-top-right"></span>
-						</div>
+						</div> */}
 					</div>
 				</div>
 				<div className="row md-marg">

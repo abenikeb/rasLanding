@@ -47,14 +47,14 @@ function Portfolio() {
 		};
 	}, []);
 	return (
-		<section className="work-card section-paddings pb-0">
+		<section className="work-card work-cards section-paddings pb-0">
 			<div className="container">
-				<div className="sec-head mb-80">
+				<div className="sec-head mb-60">
 					<div className="d-flex align-items-center">
 						<div>
 							<span className="sub-title main-color mb-5">ተመራጭ የሚያደርጉን</span>
 							<h3 className="fw-600 fz-50 text-u d-rotate wow">
-								<span className="rotate-text secondary-color">
+								<span className="secondary-color">
 									ዋና ዋና <span className="fw-200">አገልግሎቶቻችን</span>
 								</span>
 							</h3>

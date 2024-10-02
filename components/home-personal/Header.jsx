@@ -3,24 +3,24 @@ import React, { useEffect, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import loadBackgroudImages from "@/common/loadBackgroudImages";
 function Header() {
-	useLayoutEffect(() => {
-		const tl = gsap.timeline();
-		tl.fromTo(".header", { y: 200 }, { y: 0 }, "+=2.5");
-		tl.fromTo(
-			".header .container",
-			{ opacity: 0, translateY: 40 },
-			{ opacity: 1, translateY: 0 },
-			"-=0"
-		);
+	// useLayoutEffect(() => {
+	// 	const tl = gsap.timeline();
+	// 	tl.fromTo(".header", { y: 200 }, { y: 0 }, "+=2.5");
+	// 	tl.fromTo(
+	// 		".header .container",
+	// 		{ opacity: 0, translateY: 40 },
+	// 		{ opacity: 1, translateY: 0 },
+	// 		"-=0"
+	// 	);
 
-		return () => tl.kill();
-	}, []);
-	useEffect(() => {
-		loadBackgroudImages();
-	}, []);
+	// 	return () => tl.kill();
+	// }, []);
+	// useEffect(() => {
+	// 	loadBackgroudImages();
+	// }, []);
 	return (
 		<div
-			className="header header-personal valign bg-img"
+			className="headerss header-personal valign bg-img"
 			data-background="/assets/imgs/header/full/p113.png"
 			data-overlay-dark="0">
 			<div className="container ontop">
@@ -38,15 +38,15 @@ function Header() {
 								<div className="col-lg-9">
 									<div className="texts mt-30">
 										<div className="texts">
-											እኛ Ras Synergy Student ID Card Solution እንባላለን። ትዛዝ
+											እኛ Ras Synergy Student ID Card Solution እንባላለን። ትህዛዝ
 											እንቀበላለን በቴሌብር የመክፈያ ኮድዎን በመላክ በ2ቀን ውስጥ ያሉበት እናደርሳለን!!
 										</div>
 									</div>
 									<div className="d-flex align-items-center mt-60">
 										<a
-											href="/page-contact"
+											href="/page-contact#form_contact"
 											className="butn butn-md butn-bord radius-30 secondary-color">
-											<span className="text">ዛሬውኑ ያግኙን</span>
+											<span className="text">ሊያገኙን ይፈልጋሉ?</span>
 										</a>
 										<div className="icon-img-60 ml-20">
 											<img

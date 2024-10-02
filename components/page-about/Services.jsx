@@ -4,12 +4,12 @@ function Services() {
 	return (
 		<section className="services-inline2 section-padding sub-bg bord-bottom-grd bord-top-grd">
 			<div className="container ontop">
-				<div className="sec-head mb-80">
+				<div className="sec-head mb-20">
 					<div className="d-flex align-items-center">
 						<div>
 							{/* <span className="sub-title main-color mb-5">አጠቃላይ እይታ</span> */}
-							<h3 className="fw-600 fz-50 text-u d-rotate wow">
-								<span className="rotate-text">
+							<h3 className="fw-600 fz-50 text-u d-rotate wow mt-30">
+								<span className="">
 									ተልዕኳችን እና <span className="fw-200">ርዕያችን</span>
 								</span>
 							</h3>
@@ -30,7 +30,9 @@ function Services() {
 							<div>
 								<span className="num">01</span>
 								<div>
-									<span className="sub-title main-color mb-10">ተልዕኮ</span>
+									<span className="fw-200 sub-title main-color mb-10">
+										ተልዕኮ
+									</span>
 									{/* <h2>
 										አቅምን ያማከለ <span className="fw-200">ከፍተኛ ቅናሽ</span>
 									</h2> */}
@@ -94,7 +96,7 @@ function Services() {
 							<div>
 								<span className="num">03</span>
 								<div>
-									<span className="sub-title main-color mb-10">ዓላማዎቻችን</span>
+									<span className="sub-title main-color mb-10">ዓላማችን</span>
 									{/* <h2>
 										የተማሪን ደህንነት የሚያበረታቱ /{" "}
 										<span className="fw-200">ማህበረሰብ ተሳትፎን የሚደግፉ</span>

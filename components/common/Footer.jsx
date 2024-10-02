@@ -3,15 +3,15 @@ import React from "react";
 function Footer() {
 	return (
 		<footer className="clean-footer crev">
-			<div className="container pb-40 pt-40 ontop">
+			<div className="container pb-40 ontop">
 				<div className="row justify-content-between">
 					<div className="col-lg-2">
-						<div className="logo icon-img-100 md-mb80">
+						<div className="logo icon-img-100 md-mb40">
 							<img src="/assets/imgs/logo-light.png" alt="" />
 						</div>
 					</div>
 					<div className="col-lg-4">
-						<div className="column md-mb50">
+						<div className="column md-50">
 							<h6 className="sub-title mb-30">አድራሻ</h6>
 							<h6 className="p-color fw-400">
 								የካ ኮተቤ 02 የኢትዮጵያ ንግድ ባንክ 2ኛ ፎቅ, #207
@@ -21,6 +21,10 @@ function Footer() {
 							</h6>
 							<a href="tel:+251906904646" className="underline">
 								<span className="fz-22 main-color">+251 906904646</span>
+							</a>
+							<br />
+							<a href="tel:+251925546527" className="underline">
+								<span className="fz-22 main-color">+251 925546527</span>
 							</a>
 						</div>
 					</div>
@@ -58,6 +62,11 @@ function Footer() {
 							<ul className="rest social-icon d-flex align-items-center">
 								<li className="hover-this cursor-pointer">
 									<a href="#0" className="hover-anim">
+										<i className="fab fa-telegram"></i>
+									</a>
+								</li>
+								<li className="hover-this cursor-pointer">
+									<a href="#0" className="hover-anim">
 										<i className="fab fa-facebook-f"></i>
 									</a>
 								</li>
@@ -66,11 +75,7 @@ function Footer() {
 										<i className="fab fa-dribbble"></i>
 									</a>
 								</li>
-								<li className="hover-this cursor-pointer ml-10">
-									<a href="#0" className="hover-anim">
-										<i className="fab fa-linkedin-in"></i>
-									</a>
-								</li>
+
 								<li className="hover-this cursor-pointer ml-10">
 									<a href="#0" className="hover-anim">
 										<i className="fab fa-instagram"></i>
@@ -85,17 +90,14 @@ function Footer() {
 						<p className="fz-14">
 							© 2024 Rasynergy is Proudly Powered by{" "}
 							<span className="underline main-color">
-								{/* <a href="https://www.Gizuf.com" target="_blank">
-									Gizuf Digital
-								</a> */}
+								<a href="https://www.rasynergy.et" target="_blank">
+									Rasynery Group
+								</a>
 							</span>
 						</p>
 					</div>
 				</div>
 			</div>
-			{/* <div className="circle-blur">
-				<img src="/assets/imgs/patterns/blur1.png" alt="" />
-			</div> */}
 		</footer>
 	);
 }

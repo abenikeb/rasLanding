@@ -7,11 +7,9 @@ function Services() {
 				<div className="sec-head mb-80">
 					<div className="d-flex align-items-center">
 						<div>
-							<span className="sub-title main-color mb-5">የእኛ መገለጫ የሆኑ</span>
+							<span className="sub-title main-color mb-5">ተልዕኳችን እና</span>
 							<h3 className="fw-600 fz-50 secondary-color text-u d-rotate wow">
-								<span className="rotate-text">
-									ተልዕኳችን እና <span className="fw-200">ርዕያችን</span>
-								</span>
+								<span className="">ርዕያችን</span>
 							</h3>
 						</div>
 						<div className="ml-auto vi-more secondary-color">
@@ -30,7 +28,7 @@ function Services() {
 							<div className="icon-img-60 opacity-5 mb-40">
 								<img src="/assets/imgs/serv-icons/3.png" alt="" />
 							</div>
-							<h5>ርዕያችን</h5>
+							<h3>ርዕያችን</h3>
 							<div className="text mt-40">
 								<p className="truncate-text">
 									በወላጆች እና በትምህርት ቤቶች መካከል በፈጠራ ቴክኖሎጂ በመታገዘ ጠንካራ ግንኙነቶችን ማጎልበት

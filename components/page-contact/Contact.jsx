@@ -5,6 +5,7 @@ import axios from "axios";
 import { notification } from "antd";
 // import { useRouter } from "next/navigation";
 import { Input, Button, Alert, Form, Typography, Select } from "antd";
+import Image from "next/image";
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -29,7 +30,7 @@ function Contact() {
 	const [isProductVisible, setIsProductVisible] = useState(false);
 	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(false); // Loading state
-	const [studentId, setStudentId] = useState("");
+	const [studentId, setStudentId] = useState("kkk");
 	const [studentInfo, setStudentInfo] = useState(null);
 
 	const handleCheckStudent = () => {
@@ -181,15 +182,14 @@ function Contact() {
 	// };
 
 	return (
-		<section className="contact section-padding">
+		<section className="-mt-5 contact section-padding">
 			<div className="container">
 				<div className="row">
 					{/* Address */}
 					<div className="col-lg-4">
-						<div className="sec-head info-box full-width md-mb80">
-							{/* <!-- Main Branch Section --> */}
+						<div className="sec-head info-box full-width md-mb40">
 							<h2 className="contact-title">አድራሻ</h2>
-							<div className="morinfo mt-50 pb-30 bord-thin-bottom secondary-color">
+							<div className="morinfo mt-20 pb-30 bord-thin-bottom secondary-color">
 								<h6 className="mb-15 section-title">ዋና ቅርንጫፍ አድራሻ</h6>
 								<p className="address-details">
 									የካ ኮተቤ 02 የኢትዮጵያ ንግድ ባንክ 2ኛ ፎቅ, #207
@@ -200,13 +200,13 @@ function Contact() {
 									<h6 className="contact-title">ስልክ</h6>
 									<p>
 										<a href="tel:+251906904646" className="contact-link">
-											+251 9 06 90 46 46 / +251 9 06 90 46 46
+											+251 9 06 90 46 46 / +251 925546527
 										</a>
 									</p>
 								</div>
 
 								{/* <!-- Main Branch Email --> */}
-								<div className="contact-info">
+								<div className="contact-info mt-20">
 									<h6 className="contact-title">ኢሜይል</h6>
 									<p>
 										<a
@@ -238,41 +238,59 @@ function Contact() {
 						</div>
 					</div>
 
-					<div className="col-lg-8">
+					<div className="col-lg-8 -mt-5">
 						{/* Form Field */}
-						<div className="form-container sec-head info-box full-width md-mb80">
-							<Title level={2} className="form-title">
-								የተማሪ ያስገቡ
-							</Title>
 
-							<Form className="student-form">
-								{/* Student ID Input */}
+						<div
+							id="form_contact"
+							className="form-container sec-head info-box full-width md-mb80">
+							<h3 className="mb-15 secondary-color">
+								{" "}
+								<b>ዲጅታል ካርዱን እንዴት ላግኝ?</b>
+							</h3>
+
+							<p className="address-details mb-20">
+								<span className="main-color">በጣም ቀላል ነው!</span> በቅድሚያ ከታች በምስሉ
+								ላይ እንደምትመለከቱት ወደ ቴሌብር በመሄድ የተማሪውን መታወቂያ ቁጥር ያስገባሉ : ከከፈሉም በኋላ እኛ
+								በሁለት ቀናት ውስጥ ያሉበት ድረስ እናደርሳለን ወይም በትምርት ቤቶ አማካኝነት እንልካለን::
+							</p>
+
+							<Image
+								src="/assets/imgs/telebirr.png"
+								alt="Telebirr payment"
+								height={250}
+								width={150}
+							/>
+							{/* <div className="sec-bottoms">________________</div> */}
+
+							{/* <Form className="student-form mt-2">
+							
 								<Form.Item
-									label="Student ID"
+									label="የተማሪውን ID ያስገቡ"
 									name="studentId"
 									rules={[
 										{ required: true, message: "Please input the Student ID!" },
 									]}
-									className="input-form-item">
+									className="input-form-item ">
 									<Input
 										value={studentId}
 										onChange={(e) => setStudentId(e.target.value)}
 										placeholder="Enter Student ID"
-										className="student-input"
+										className="student-input secondary-color border p-3"
 									/>
 								</Form.Item>
 
-								{/* Check Button */}
+							
 								<Form.Item>
 									<Button
 										type="primary"
 										onClick={handleCheckStudent}
 										className="check-btn">
-										Check
+										ያስገቡ
 									</Button>
 								</Form.Item>
 
-								{/* Product Selection (only visible if student is found) */}
+								
 								{isProductVisible && (
 									<>
 										<Form.Item
@@ -291,7 +309,7 @@ function Contact() {
 											</Select>
 										</Form.Item>
 
-										{/* Submit Button */}
+									
 										<Form.Item>
 											<Button
 												type="primary"
@@ -303,7 +321,7 @@ function Contact() {
 									</>
 								)}
 
-								{/* Display Success or Error Alert */}
+							
 								{studentInfo && (
 									<Alert
 										message={`Student Found: ${studentInfo.name}`}
@@ -321,7 +339,7 @@ function Contact() {
 										className="alert-message"
 									/>
 								)}
-							</Form>
+							</Form> */}
 						</div>
 					</div>
 				</div>

@@ -48,7 +48,7 @@ export default function Home() {
 						<About />
 						<div className="sec-bottoms"></div>
 						<Services />
-						<div className="sec-bottom"></div>
+						{/* <div className="sec-bottom"></div> */}
 						<Portfolio />
 						{/* <Skills /> */}
 						<Testimonials />
