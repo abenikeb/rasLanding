@@ -7,6 +7,11 @@ import Cookies from "js-cookie";
 
 function Navbar() {
 	const [language, setLanguage] = useState("am"); // default to Amharic
+	const [isNavOpen, setIsNavOpen] = useState(false);
+
+	const handleToggleNav = () => {
+		setIsNavOpen(!isNavOpen); // Toggle the state
+	};
 	const scrolled = useScroll(20);
 	const router = useRouter();
 
@@ -57,23 +62,23 @@ function Navbar() {
 			.querySelector(".dropdown-menu")
 			.classList.remove("show");
 	}
-	function handleToggleNav() {
-		if (
-			document
-				.querySelector(".navbar .navbar-collapse")
-				.classList.contains("show")
-		) {
-			document
-				.querySelector(".navbar .navbar-collapse")
-				.classList.remove("show");
-		} else if (
-			!document
-				.querySelector(".navbar .navbar-collapse")
-				.classList.contains("show")
-		) {
-			document.querySelector(".navbar .navbar-collapse").classList.add("show");
-		}
-	}
+	// function handleToggleNav() {
+	// 	if (
+	// 		document
+	// 			.querySelector(".navbar .navbar-collapse")
+	// 			.classList.contains("show")
+	// 	) {
+	// 		document
+	// 			.querySelector(".navbar .navbar-collapse")
+	// 			.classList.remove("show");
+	// 	} else if (
+	// 		!document
+	// 			.querySelector(".navbar .navbar-collapse")
+	// 			.classList.contains("show")
+	// 	) {
+	// 		document.querySelector(".navbar .navbar-collapse").classList.add("show");
+	// 	}
+	// }
 	return (
 		<nav
 			className={`navbar navbar-expand-lg bord blur ${
@@ -163,7 +168,7 @@ function Navbar() {
 					</select>
 				</div> */}
 
-				<button
+				{/* <button
 					className="navbar-toggler"
 					type="button"
 					data-toggle="collapse"
@@ -175,7 +180,72 @@ function Navbar() {
 					<span className="icon-bar">
 						<i className="fas fa-bars"></i>
 					</span>
+				</button> */}
+				<button
+					className="navbar-toggler "
+					type="button"
+					aria-controls="navbarSupportedContent"
+					aria-expanded={isNavOpen}
+					aria-label="Toggle navigation"
+					onClick={handleToggleNav}>
+					<span className="icon-bar">
+						<i className="fas fa-bars"></i>
+					</span>
 				</button>
+
+				<div
+					className={`navbar-collapse collapse d-md-none  ${
+						isNavOpen ? "show" : ""
+					}`}
+					id="navbarSupportedContent">
+					{/* Your navigation content goes here */}
+					<ul className="navbar-nav">
+						<li className="nav-item">
+							<Link
+								className="nav-link"
+								href={language === "en" ? "/home-en" : "/"}>
+								<span className="rolling-text">
+									{language === "am" ? "ዋና ገጽ" : "Home"}
+								</span>
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link className="nav-link" href={getLink("/page-about")}>
+								<span className="rolling-text">
+									{language === "am" ? "ስለ እኛ" : "About Us"}
+								</span>
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link className="nav-link" href={getLink("/page-services")}>
+								<span className="rolling-text">
+									{language === "am" ? "አገልግሎቶቻችን" : "Services"}
+								</span>
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link className="nav-link" href={getLink("/page-testimonials")}>
+								<span className="rolling-text">
+									{language === "am" ? "ምስክርነቶች" : "Testimonials"}
+								</span>
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link className="nav-link" href={getLink("/page-FAQ")}>
+								<span className="rolling-text">
+									{language === "am" ? "የሚጠየቁ ጥያቄዎች" : "FAQ"}
+								</span>
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link className="nav-link" href={getLink("/page-contact")}>
+								<span className="rolling-text">
+									{language === "am" ? "ያግኙን" : "Contact"}
+								</span>
+							</Link>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</nav>
 	);
