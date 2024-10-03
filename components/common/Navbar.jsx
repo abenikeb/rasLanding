@@ -194,7 +194,7 @@ function Navbar() {
 				</button>
 
 				<div
-					className={`navbar-collapse collapse d-md-none  ${
+					className={`navbar-collapse collapse  ${
 						isNavOpen ? "show" : ""
 					}`}
 					id="navbarSupportedContent">
