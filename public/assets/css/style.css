@@ -9,6 +9,45 @@
 	font-style: normal;
 }
 
+.custom-navbar {
+	background-color: #fff;
+	padding: 1rem;
+	position: relative;
+}
+
+.custom-navbar.navbar-fixed {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+}
+
+.custom-nav-list {
+	list-style: none;
+	display: flex;
+	gap: 1rem;
+	padding: 0;
+}
+
+.custom-nav-item {
+	margin: 0;
+}
+
+.custom-nav-link {
+	color: #000;
+	text-decoration: none;
+}
+
+.custom-navbar-toggler {
+	background: none;
+	border: none;
+}
+
+.mobile-nav {
+	background-color: #f8f9fa;
+	padding: 1rem;
+}
+
 .headerss {
 	background-image: url("/assets/imgs/header/full/p113.png");
 	background-size: cover;
