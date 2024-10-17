@@ -246,7 +246,7 @@ function Contact() {
 							className="form-container sec-head info-box full-width md-mb80">
 							<h3 className="mb-15 secondary-color">
 								{" "}
-								<b>ዲጅታል ካርዱን እንዴት ላግኝ?</b>
+								<b>አገልግሎታችሁን እንዴት ላግኝ?</b>
 							</h3>
 
 							<p className="address-details mb-20">
