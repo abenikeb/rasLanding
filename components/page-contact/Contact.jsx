@@ -1,185 +1,204 @@
 "use client";
 import React from "react";
-import { useState } from "react";
-import axios from "axios";
-import { notification } from "antd";
-// import { useRouter } from "next/navigation";
-import { Input, Button, Alert, Form, Typography, Select } from "antd";
 import Image from "next/image";
-
-const { Title } = Typography;
-const { Option } = Select;
-// Mock Array
-const students = [
-	{ id: "12345", name: "John Doe" },
-	{ id: "67890", name: "Jane Smith" },
-	{ id: "11223", name: "Alice Johnson" },
-];
-
-// Mock Product Array
-const products = [
-	{ id: "1", name: "ID Card" },
-	{ id: "2", name: "Library Card" },
-	{ id: "3", name: "Bus Pass" },
-];
+import { message } from "antd";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import {
+	TagIcon,
+	DocumentTextIcon,
+	UserIcon,
+} from "@heroicons/react/24/outline";
+// import { Button } from "../button";
+import axios from "axios";
 
 function Contact() {
-	// const router = useRouter();
-	const [termsAccepted, setTermsAccepted] = useState(false); // Terms & Conditions state
-	const [product, setProduct] = useState("");
-	const [isProductVisible, setIsProductVisible] = useState(false);
-	const [error, setError] = useState("");
-	const [loading, setLoading] = useState(false); // Loading state
-	const [studentId, setStudentId] = useState("kkk");
-	const [studentInfo, setStudentInfo] = useState(null);
+	const router = useRouter();
+	const [postFieldVariation, setPostFieldVariation] = useState([]);
+	const [items, setItems] = useState([]);
+	const [studentData, setStudentData] = useState(null);
+	const [loading, setLoading] = useState(false);
 
-	const handleCheckStudent = () => {
-		// Find the student in the mock array
-		const student = students.find((student) => student.id === studentId);
-
-		if (student) {
-			setStudentInfo(student);
-			setError("");
-			setIsProductVisible(true);
-		} else {
-			setStudentInfo(null);
-			setError("Student not found.");
-			setIsProductVisible(false);
-		}
-	};
-
-	const handleSubmit = () => {
-		if (studentInfo && product) {
-			alert(`Student ID: ${studentId}, Selected Product: ${product}`);
-		} else {
-			alert("Please select a product.");
-		}
-	};
-
-	const handleSearch = () => {
-		// Find the student in the mock array
-		const student = students.find((student) => student.id === studentId);
-
-		if (student) {
-			setStudentInfo(student);
-			setError("");
-		} else {
-			setStudentInfo(null);
-			setError("Student not found.");
-		}
-	};
-
-	const [formData, setFormData] = useState({
-		firstName: "",
-		middleName: "",
-		lastName: "",
-		gender: "",
-		placeOfBirth: "",
-		birthDate: "",
-		address: {
-			city: "",
-			subCity: "",
-			woroda: "",
-			houseNumber: "",
-			phone: "",
-			email: "",
-			maritalStatus: "",
-		},
-		familyMembersCount: "",
-		educationLevel: "",
-		workType: "",
-		workPosition: "",
-		companyName: "",
-		monthlySalary: "",
-		monthlySavings: "",
-		infoSource: "",
-		memberInfo: {
-			name: "",
-			phone: "",
-			relation: "",
-			address: {
-				city: "",
-				subCity: "",
-				woroda: "",
-				houseNumber: "",
-				phone: "",
-				email: "",
-			},
-		},
-		loanTimeAssumption: "",
-		loanReason: "",
+	const [formState, setFormState] = useState({
+		name: "",
+		item_id: "",
+		student_id: "",
+		school_id: "",
+		billerRefNumber: "",
+		user_id: 1,
+		description: "Rasynergy Product Description",
+		actual_price: 0,
+		discount_price: 0,
+		rating: 1,
+		vendor_id: 1,
+		isSelected: true,
+		isVariableProduct: false,
+		category_id: 1,
+		sub_category_id: 1,
+		can_make_an_offer: false,
+		location: "Addis Ababa, Ethiopia",
+		stock_quantity: "10000",
+		instruction: "",
+		brand: "Rasynergy",
+		quantity: 1,
+		single_price: 0,
+		shipping: false,
+		flatRate: 0,
 	});
 
+	const calculateActualPrice = (quantity, single_price, flatRate, shipping) => {
+		const validQuantity = quantity || 0;
+		const validPrice = single_price || 0;
+		const validFlatRate = flatRate || 0;
+
+		const baseTotal = validQuantity * validPrice;
+		const actual_price = shipping ? baseTotal + validFlatRate : baseTotal;
+
+		setFormState((prevState) => ({
+			...prevState,
+			actual_price,
+		}));
+	};
+
 	const handleChange = (e) => {
-		const { name, value } = e.target;
-		const keys = name.split("."); // Split the name by '.' to handle nested fields
+		const { name, value, type, checked } = e.target;
+		const inputValue = type === "checkbox" ? checked : value;
 
-		if (keys.length === 1) {
-			// Handle top-level fields
-			setFormData((prevData) => ({
-				...prevData,
-				[name]: value,
-			}));
-		} else {
-			// Handle nested fields like address or memberInfo
-			setFormData((prevData) => {
-				let updatedData = { ...prevData };
+		const parsedValue =
+			name === "flatRate" || name === "quantity" || name === "single_price"
+				? parseFloat(inputValue) || 0
+				: inputValue;
 
-				// Traverse the keys and update the nested object
-				let nested = updatedData;
-				for (let i = 0; i < keys.length - 1; i++) {
-					nested = nested[keys[i]];
+		setFormState((prevState) => {
+			const updatedState = {
+				...prevState,
+				[name]: parsedValue,
+			};
+
+			calculateActualPrice(
+				updatedState.quantity,
+				updatedState.single_price,
+				updatedState.flatRate,
+				updatedState.shipping
+			);
+
+			return updatedState;
+		});
+	};
+
+	const handleItemChange = (itemId, index) => {
+		setFormState((prevState) => {
+			const updatedState = {
+				...prevState,
+				item_id: itemId,
+				name: items[index]?.item_name ?? "product name",
+				single_price: items[index].item_price,
+			};
+
+			calculateActualPrice(
+				updatedState.quantity,
+				updatedState.single_price,
+				updatedState.flatRate,
+				updatedState.shipping
+			);
+
+			return updatedState;
+		});
+	};
+
+	useEffect(() => {
+		async function fetchFieldVariations() {
+			try {
+				const mappedData = fields.map((field) => ({
+					field_id: field.field_id,
+					fieldName: field.label,
+					options: field.values.map((value) => ({
+						value_id: value.id,
+						valueName: value.value,
+					})),
+				}));
+
+				setPostFieldVariation(mappedData);
+			} catch (error) {
+				console.error("Error fetching field variations:", error);
+			}
+		}
+
+		fetchFieldVariations();
+	}, []);
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		const data = {
+			...formState,
+			shipping: formState.shipping ? 1 : 0,
+		};
+
+		try {
+			setLoading(true);
+			const response = await fetch(
+				"http://rasynergy.et/api/product-post/store",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(data),
 				}
-				nested[keys[keys.length - 1]] = value;
+			);
 
-				return updatedData;
-			});
+			const result = await response.json();
+
+			if (response.ok) {
+				console.log("Product created successfully");
+				router.push("/dashboard/products");
+			} else {
+				console.error("Error creating product", result);
+			}
+		} catch (error) {
+			console.error("Error submitting form", error);
+		} finally {
+			setLoading(false);
 		}
 	};
 
-	const handleCheckboxChange = (e) => {
-		setTermsAccepted(e.target.checked);
+	const generateBillerRefNumber = () => {
+		const uniqueNumber = `RAS${Math.floor(
+			10000000 + Math.random() * 90000000
+		)}`;
+		setFormState({
+			...formState,
+			billerRefNumber: uniqueNumber,
+		});
 	};
 
-	// const handleSubmit = async (e) => {
-	// 	e.preventDefault();
+	const findStudentData = async () => {
+		try {
+			const response = await axios.get(
+				`http://rasynergy.et/api/users/find-students?student_id=${formState.student_id}`
+			);
+			setItems(response.data.data.items);
 
-	// 	setLoading(true);
+			setStudentData({
+				first_name: response.data.data.first_name,
+				middle_name: response.data.data.middle_name,
+				student_user_id: response.data.data.student_user_id,
+				last_name: response.data.data.last_name,
+				student_id: response.data.data.student_id,
+				school_id: response.data.data.school_id,
+				school_name: response.data.data.school_name,
+			});
 
-	// 	try {
-	// 		const response = await axios.post(
-	// 			"https://helazbeauty.et/api/member-registration",
-	// 			formData,
-	// 			{
-	// 				headers: {
-	// 					"Content-Type": "application/json",
-	// 				},
-	// 			}
-	// 		);
-
-	// 		if (response.status === 200) {
-	// 			setLoading(false); // Remove loading after submission
-	// 			notification.success({
-	// 				message: "Success",
-	// 				description: "Form submitted successfully",
-	// 			});
-	// 			// Route to the contact page
-	// 			// router.push("/page-contact");
-	// 		} else {
-	// 			notification.error({
-	// 				message: "Error",
-	// 				description: "Error submitting form",
-	// 			});
-	// 			setLoading(false);
-	// 		}
-	// 	} catch (error) {
-	// 		setLoading(false);
-	// 		notification.error({
-	// 			message: "Error",
-	// 			description: "There was an error submitting the form",
-	// 		});
-	// 	}
-	// };
+			setFormState((prevState) => ({
+				...prevState,
+				school_id: response.data.data.school_id,
+				user_id: response.data.data.student_user_id,
+			}));
+		} catch (error) {
+			message.error("Failed to fetch items");
+		}
+	};
 
 	return (
 		<section className="-mt-5 contact section-padding">
@@ -261,85 +280,182 @@ function Contact() {
 								height={250}
 								width={150}
 							/>
-							{/* <div className="sec-bottoms">________________</div> */}
+							<div className="sec-bottoms">________________</div>
+							<form onSubmit={handleSubmit} className="custom-form-container">
+								<div className="custom-form-content">
+									<div className="custom-form-group">
+										<label htmlFor="student_id" className="custom-form-label">
+											<UserIcon className="custom-form-icon" />
+											Student ID
+										</label>
+										<div className="custom-form-input-group">
+											<input
+												id="student_id"
+												name="student_id"
+												type="text"
+												className="custom-form-input-field"
+												placeholder="Enter student ID"
+												value={formState.student_id}
+												onChange={handleChange}
+											/>
+											<button
+												type="button"
+												onClick={findStudentData}
+												className="custom-form-button-primary">
+												Check
+											</button>
+										</div>
+										{studentData && (
+											<div className="custom-form-student-info">
+												{studentData.first_name} {studentData.last_name}
+											</div>
+										)}
+									</div>
 
-							{/* <Form className="student-form mt-2">
-							
-								<Form.Item
-									label="የተማሪውን ID ያስገቡ"
-									name="studentId"
-									rules={[
-										{ required: true, message: "Please input the Student ID!" },
-									]}
-									className="input-form-item ">
-									<Input
-										value={studentId}
-										onChange={(e) => setStudentId(e.target.value)}
-										placeholder="Enter Student ID"
-										className="student-input secondary-color border p-3"
-									/>
-								</Form.Item>
+									<div className="custom-form-group">
+										<label htmlFor="item_id" className="custom-form-label">
+											<TagIcon className="custom-form-icon" />
+											Select Item
+										</label>
+										<select
+											id="item_id"
+											name="item_id"
+											className="custom-form-select-field"
+											value={formState.item_id}
+											onChange={handleChange}>
+											<option value="">Select an item</option>
+											{items.map((item, index) => (
+												<option key={index} value={item.id}>
+													{item.item_name}
+												</option>
+											))}
+										</select>
+									</div>
 
-							
-								<Form.Item>
-									<Button
-										type="primary"
-										onClick={handleCheckStudent}
-										className="check-btn">
-										ያስገቡ
-									</Button>
-								</Form.Item>
+									<div className="custom-form-group">
+										<label
+											htmlFor="biller_ref_number"
+											className="custom-form-label">
+											<DocumentTextIcon className="custom-form-icon" />
+											Biller Ref Number
+										</label>
+										<div className="custom-form-input-group">
+											<input
+												id="biller_ref_number"
+												name="biller_ref_number"
+												type="text"
+												className="custom-form-input-field"
+												value={formState.billerRefNumber}
+												onChange={handleChange}
+												readOnly
+											/>
+											<button
+												type="button"
+												onClick={generateBillerRefNumber}
+												className="custom-form-button-secondary">
+												Generate
+											</button>
+										</div>
+									</div>
 
-								
-								{isProductVisible && (
-									<>
-										<Form.Item
-											label="Select Product"
-											name="product"
-											className="select-form-item">
-											<Select
-												placeholder="Select a product"
-												onChange={(value) => setProduct(value)}
-												className="product-select">
-												{products.map((product) => (
-													<Option key={product.id} value={product.name}>
-														{product.name}
-													</Option>
-												))}
-											</Select>
-										</Form.Item>
+									{/* Quantity, Price, and Total */}
+									<div className="custom-form-grid">
+										<div>
+											<label
+												htmlFor="single_price"
+												className="custom-form-label">
+												Single Price
+											</label>
+											<input
+												id="single_price"
+												name="single_price"
+												type="number"
+												className="custom-form-input-field"
+												placeholder="Enter price per unit"
+												value={formState.single_price}
+												onChange={handleChange}
+											/>
+										</div>
 
-									
-										<Form.Item>
-											<Button
-												type="primary"
-												onClick={handleSubmit}
-												className="submit-btn">
-												Submit
-											</Button>
-										</Form.Item>
-									</>
-								)}
+										<div>
+											<label htmlFor="quantity" className="custom-form-label">
+												Quantity
+											</label>
+											<input
+												id="quantity"
+												name="quantity"
+												type="number"
+												className="custom-form-input-field"
+												placeholder="Enter quantity"
+												value={formState.quantity}
+												onChange={handleChange}
+											/>
+										</div>
 
-							
-								{studentInfo && (
-									<Alert
-										message={`Student Found: ${studentInfo.name}`}
-										type="success"
-										showIcon
-										className="alert-message"
-									/>
-								)}
+										{/* Shipping and Flat Rate */}
+										<div className="custom-form-group">
+											<label htmlFor="shipping" className="custom-form-label">
+												Shipping
+											</label>
+											<div className="custom-form-checkbox-group">
+												<input
+													id="shipping"
+													name="shipping"
+													type="checkbox"
+													className="custom-form-checkbox"
+													checked={formState.shipping}
+													onChange={handleChange}
+												/>
+												<span>Enable shipping</span>
+											</div>
+											{formState.shipping && (
+												<div className="custom-form-flat-rate">
+													<label
+														htmlFor="flatRate"
+														className="custom-form-label">
+														Flat Rate
+													</label>
+													<input
+														id="flatRate"
+														name="flatRate"
+														type="number"
+														className="custom-form-input-field"
+														placeholder="Enter flat rate"
+														value={formState.flatRate}
+														onChange={handleChange}
+													/>
+												</div>
+											)}
+										</div>
 
-								{error && (
-									<Alert
-										message={error}
-										type="error"
-										showIcon
-										className="alert-message"
-									/>
-								)}
-							</Form> */}
+										{/* Total Price */}
+										<div>
+											<label
+												htmlFor="actual_price"
+												className="custom-form-label">
+												Total Price
+											</label>
+											<input
+												id="actual_price"
+												name="actual_price"
+												type="text"
+												className="custom-form-input-field"
+												placeholder="Total price"
+												value={formState.actual_price.toFixed(2)}
+												readOnly
+											/>
+										</div>
+									</div>
+								</div>
+
+								<div className="custom-form-actions">
+									<button
+										loading={loading}
+										className="custom-form-button-primary">
+										Create Post
+									</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
