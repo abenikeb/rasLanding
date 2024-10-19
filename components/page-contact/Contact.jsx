@@ -9,22 +9,24 @@ import {
 	DocumentTextIcon,
 	UserIcon,
 } from "@heroicons/react/24/outline";
-// import { Button } from "../button";
 import axios from "axios";
 
 function Contact() {
 	const router = useRouter();
 	const [postFieldVariation, setPostFieldVariation] = useState([]);
 	const [items, setItems] = useState([]);
+	const [isItemSelect, setIsItemSelect] = useState(false);
+
 	const [studentData, setStudentData] = useState(null);
 	const [loading, setLoading] = useState(false);
 
 	const [formState, setFormState] = useState({
 		name: "",
 		item_id: "",
+		phone: "",
 		student_id: "",
 		school_id: "",
-		billerRefNumber: "",
+		biller_ref_no: "",
 		user_id: 1,
 		description: "Rasynergy Product Description",
 		actual_price: 0,
@@ -43,8 +45,40 @@ function Contact() {
 		quantity: 1,
 		single_price: 0,
 		shipping: false,
-		flatRate: 0,
+		flatRate: 10,
 	});
+
+	const [formErrors, setFormErrors] = useState({
+		phone: "",
+	});
+
+	const handlePhoneChange = (e) => {
+		const { name, value } = e.target;
+		setFormState((prevState) => ({
+			...prevState,
+			[name]: value,
+		}));
+	};
+
+	const validatePhoneNumber = () => {
+		const { phone } = formState;
+		let phoneError = "";
+
+		// Phone number validation rules
+		const phoneRegex = /^(09|251)([0-9]{7,9})$/;
+
+		if (!phoneRegex.test(phone)) {
+			phoneError =
+				"Phone number must start with 09 or 251 and have 9 to 11 digits.";
+		}
+
+		setFormErrors((prevState) => ({
+			...prevState,
+			phone: phoneError,
+		}));
+
+		return phoneError === ""; // Return true if valid, false if not
+	};
 
 	const calculateActualPrice = (quantity, single_price, flatRate, shipping) => {
 		const validQuantity = quantity || 0;
@@ -87,12 +121,14 @@ function Contact() {
 	};
 
 	const handleItemChange = (itemId, index) => {
+		let uniqueNumber = generatebiller_ref_no();
 		setFormState((prevState) => {
 			const updatedState = {
 				...prevState,
 				item_id: itemId,
 				name: items[index]?.item_name ?? "product name",
 				single_price: items[index].item_price,
+				biller_ref_no: uniqueNumber,
 			};
 
 			calculateActualPrice(
@@ -104,6 +140,7 @@ function Contact() {
 
 			return updatedState;
 		});
+		setIsItemSelect(true);
 	};
 
 	useEffect(() => {
@@ -130,47 +167,67 @@ function Contact() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const data = {
+		if (formErrors.phone) {
+			return;
+		}
+
+		const bodyData = {
 			...formState,
 			shipping: formState.shipping ? 1 : 0,
 		};
 
 		try {
 			setLoading(true);
-			const response = await fetch(
+			const { data } = await axios.post(
 				"http://rasynergy.et/api/product-post/store",
+				bodyData,
 				{
-					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
 					},
-					body: JSON.stringify(data),
 				}
 			);
 
-			const result = await response.json();
+			console.log({ bodyData });
 
-			if (response.ok) {
-				console.log("Product created successfully");
-				router.push("/dashboard/products");
+			if (data.code === "0") {
+				const refNo = bodyData.biller_ref_no;
+
+				// Copy only the reference number to clipboard
+				navigator.clipboard
+					.writeText(refNo)
+					.then(() => {
+						message.success(
+							`ምርት በተሳካ ሁኔታ ተፈጥሯል። የእርስዎ የመክፈያ ቁጥር ${refNo} ነው። ቁጥሩ ወደ ቅንጥብ ሰሌዳዎ ተቀድቷል።.`
+						);
+					})
+					.catch(() => {
+						message.success(
+							`ምርት በተሳካ ሁኔታ ተፈጥሯል። የእርስዎ የመክፈያ ቁጥር ${refNo} ነው። ቁጥሩ ወደ ቅንጥብ ሰሌዳዎ ተቀድቷል።.`
+						);
+					});
+
+				// Reload the page after 10 seconds
+				setTimeout(() => {
+					window.location.reload();
+				}, 20000); // 10-second delay
 			} else {
-				console.error("Error creating product", result);
+				message.error("Error creating product");
+				console.error("Error creating product", data);
 			}
 		} catch (error) {
-			console.error("Error submitting form", error);
+			message.error("Error creating product");
+			console.error("Request failed", error.response || error);
 		} finally {
 			setLoading(false);
 		}
 	};
 
-	const generateBillerRefNumber = () => {
+	const generatebiller_ref_no = () => {
 		const uniqueNumber = `RAS${Math.floor(
 			10000000 + Math.random() * 90000000
 		)}`;
-		setFormState({
-			...formState,
-			billerRefNumber: uniqueNumber,
-		});
+		return uniqueNumber;
 	};
 
 	const findStudentData = async () => {
@@ -179,6 +236,8 @@ function Contact() {
 				`http://rasynergy.et/api/users/find-students?student_id=${formState.student_id}`
 			);
 			setItems(response.data.data.items);
+
+			console.log({ studentInfo: response.data.data });
 
 			setStudentData({
 				first_name: response.data.data.first_name,
@@ -195,6 +254,8 @@ function Contact() {
 				school_id: response.data.data.school_id,
 				user_id: response.data.data.student_user_id,
 			}));
+
+			// generatebiller_ref_no();
 		} catch (error) {
 			message.error("Failed to fetch items");
 		}
@@ -258,8 +319,6 @@ function Contact() {
 					</div>
 
 					<div className="col-lg-8 -mt-5">
-						{/* Form Field */}
-
 						<div
 							id="form_contact"
 							className="form-container sec-head info-box full-width md-mb80">
@@ -281,182 +340,159 @@ function Contact() {
 								width={150}
 							/>
 							<div className="sec-bottoms">________________</div>
-							<form onSubmit={handleSubmit} className="custom-form-container">
-								<div className="custom-form-content">
-									<div className="custom-form-group">
-										<label htmlFor="student_id" className="custom-form-label">
-											<UserIcon className="custom-form-icon" />
-											Student ID
-										</label>
-										<div className="custom-form-input-group">
-											<input
-												id="student_id"
-												name="student_id"
-												type="text"
-												className="custom-form-input-field"
-												placeholder="Enter student ID"
-												value={formState.student_id}
-												onChange={handleChange}
-											/>
-											<button
-												type="button"
-												onClick={findStudentData}
-												className="custom-form-button-primary">
-												Check
-											</button>
+						</div>
+						{/* Form Field */}
+						<form onSubmit={handleSubmit} className="custom-form-container">
+							<div className="custom-form-content">
+								<div className="custom-form-group">
+									<label htmlFor="student_id" className="custom-form-label">
+										የተማሪው ID <span className="required-field">*</span>
+									</label>
+									<div className="custom-form-input-group">
+										<UserIcon className="custom-form-icon" />
+										<input
+											id="student_id"
+											name="student_id"
+											type="text"
+											className="custom-form-input-field"
+											placeholder="የተማሪውን ID ያስገቡ"
+											value={formState.student_id}
+											onChange={handleChange}
+										/>
+										<button
+											type="button"
+											onClick={findStudentData}
+											className="custom-form-button-primary">
+											ያረጋግጡ
+										</button>
+									</div>
+									{studentData && (
+										<div className="custom-form-student-info">
+											{studentData.first_name} {studentData.last_name}
 										</div>
-										{studentData && (
-											<div className="custom-form-student-info">
-												{studentData.first_name} {studentData.last_name}
+									)}
+								</div>
+
+								<div className="custom-form-group">
+									<label htmlFor="item_id" className="custom-form-label-center">
+										የሚገዙትን እቃ ይምረጡ{" "}
+										<span className="custom-req-label">
+											{" "}
+											(አስቀድመው ተማሪው መኖሩን ያረጋግጡ)
+										</span>
+									</label>
+									{/* <TagIcon className="custom-form-icon-option" /> */}
+									<select
+										id="item_id"
+										name="item_id"
+										className="custom-form-select-field"
+										value={formState.item_id}
+										onChange={(e) => {
+											const selectedIndex = e.target.selectedIndex - 1; // Adjust for "Select an item" option
+											const selectedItemId = e.target.value;
+											handleItemChange(selectedItemId, selectedIndex);
+										}}>
+										<option value="">የሚገዙትን እቃ ይምረጡ</option>
+										{items.map((item, index) => (
+											<option key={index} value={item.id}>
+												{item.item_name}
+											</option>
+										))}
+										x
+									</select>
+								</div>
+
+								{isItemSelect && (
+									<>
+										{/* Quantity, Price, and Total */}
+										<div className="custom-form-checkout-summary">
+											<div className="checkout-item">
+												<span className="checkout-label">ነጠላ ዋጋ:</span>
+												<span className="checkout-value">
+													{formState.single_price
+														? `${formState.single_price} Birr`
+														: "-"}
+												</span>
 											</div>
-										)}
-									</div>
 
-									<div className="custom-form-group">
-										<label htmlFor="item_id" className="custom-form-label">
-											<TagIcon className="custom-form-icon" />
-											Select Item
-										</label>
-										<select
-											id="item_id"
-											name="item_id"
-											className="custom-form-select-field"
-											value={formState.item_id}
-											onChange={handleChange}>
-											<option value="">Select an item</option>
-											{items.map((item, index) => (
-												<option key={index} value={item.id}>
-													{item.item_name}
-												</option>
-											))}
-										</select>
-									</div>
-
-									<div className="custom-form-group">
-										<label
-											htmlFor="biller_ref_number"
-											className="custom-form-label">
-											<DocumentTextIcon className="custom-form-icon" />
-											Biller Ref Number
-										</label>
-										<div className="custom-form-input-group">
-											<input
-												id="biller_ref_number"
-												name="biller_ref_number"
-												type="text"
-												className="custom-form-input-field"
-												value={formState.billerRefNumber}
-												onChange={handleChange}
-												readOnly
-											/>
-											<button
-												type="button"
-												onClick={generateBillerRefNumber}
-												className="custom-form-button-secondary">
-												Generate
-											</button>
-										</div>
-									</div>
-
-									{/* Quantity, Price, and Total */}
-									<div className="custom-form-grid">
-										<div>
-											<label
-												htmlFor="single_price"
-												className="custom-form-label">
-												Single Price
-											</label>
-											<input
-												id="single_price"
-												name="single_price"
-												type="number"
-												className="custom-form-input-field"
-												placeholder="Enter price per unit"
-												value={formState.single_price}
-												onChange={handleChange}
-											/>
-										</div>
-
-										<div>
-											<label htmlFor="quantity" className="custom-form-label">
-												Quantity
-											</label>
-											<input
-												id="quantity"
-												name="quantity"
-												type="number"
-												className="custom-form-input-field"
-												placeholder="Enter quantity"
-												value={formState.quantity}
-												onChange={handleChange}
-											/>
-										</div>
-
-										{/* Shipping and Flat Rate */}
-										<div className="custom-form-group">
-											<label htmlFor="shipping" className="custom-form-label">
-												Shipping
-											</label>
-											<div className="custom-form-checkbox-group">
-												<input
-													id="shipping"
-													name="shipping"
-													type="checkbox"
-													className="custom-form-checkbox"
-													checked={formState.shipping}
-													onChange={handleChange}
-												/>
-												<span>Enable shipping</span>
+											<div className="checkout-item">
+												<span className="checkout-label">ብዛት:</span>
+												<span className="checkout-value">
+													{formState.quantity || "-"}
+												</span>
 											</div>
-											{formState.shipping && (
-												<div className="custom-form-flat-rate">
-													<label
-														htmlFor="flatRate"
-														className="custom-form-label">
-														Flat Rate
-													</label>
+
+											{/* Shipping and Flat Rate */}
+											<div className="checkout-item">
+												<span className="checkout-label">መላኪያ ይፈልጋሉ:</span>
+												<span>
 													<input
-														id="flatRate"
-														name="flatRate"
-														type="number"
-														className="custom-form-input-field"
-														placeholder="Enter flat rate"
-														value={formState.flatRate}
+														id="shipping"
+														name="shipping"
+														type="checkbox"
+														className="checkout-value"
+														checked={formState.shipping}
 														onChange={handleChange}
 													/>
+												</span>
+											</div>
+
+											{formState.shipping && (
+												<div className="checkout-item">
+													<span className="checkout-label">የመላኪያ ዋጋ:</span>
+													<span className="checkout-value">
+														{formState.flatRate
+															? `${formState.flatRate} Birr`
+															: "-"}
+													</span>
 												</div>
 											)}
+
+											<div className="checkout-item total">
+												<span className="checkout-label">ጠቅላላ ዋጋ:</span>
+												<span className="checkout-value">
+													{formState.actual_price
+														? `${formState.actual_price} Birr`
+														: "-"}
+												</span>
+											</div>
 										</div>
 
-										{/* Total Price */}
-										<div>
-											<label
-												htmlFor="actual_price"
-												className="custom-form-label">
-												Total Price
-											</label>
-											<input
-												id="actual_price"
-												name="actual_price"
-												type="text"
-												className="custom-form-input-field"
-												placeholder="Total price"
-												value={formState.actual_price.toFixed(2)}
-												readOnly
-											/>
+										{/* Phone Number Input */}
+										<div className="custom-form-grid">
+											<div className="custom-form-group">
+												<label htmlFor="phone" className="custom-form-label">
+													የምናገኝዎን ስልክ ያስገቡ{" "}
+													<span className="required-field">*</span>
+												</label>
+												<input
+													id="phone"
+													name="phone"
+													type="text"
+													className="custom-form-input-field"
+													placeholder="ስልኮትን ያስገቡ"
+													value={formState.phone}
+													onChange={handlePhoneChange}
+													onBlur={validatePhoneNumber}
+													required
+												/>
+												{formErrors.phone && (
+													<p className="error-message">{formErrors.phone}</p>
+												)}
+											</div>
 										</div>
-									</div>
-								</div>
+									</>
+								)}
+							</div>
 
-								<div className="custom-form-actions">
-									<button
-										loading={loading}
-										className="custom-form-button-primary">
-										Create Post
-									</button>
-								</div>
-							</form>
-						</div>
+							<div className="custom-form-actions">
+								<button
+									loading={loading}
+									className="custom-form-button-primary">
+									የመረጡትን ያስገቡ
+								</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
