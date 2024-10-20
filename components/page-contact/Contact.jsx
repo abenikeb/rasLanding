@@ -4,11 +4,7 @@ import Image from "next/image";
 import { message } from "antd";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import {
-	TagIcon,
-	DocumentTextIcon,
-	UserIcon,
-} from "@heroicons/react/24/outline";
+import { UserIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 
 function Contact() {
@@ -192,20 +188,9 @@ function Contact() {
 
 			if (data.code === "0") {
 				const refNo = bodyData.biller_ref_no;
-
-				// Copy only the reference number to clipboard
-				navigator.clipboard
-					.writeText(refNo)
-					.then(() => {
-						message.success(
-							`ምርት በተሳካ ሁኔታ ተፈጥሯል። የእርስዎ የመክፈያ ቁጥር ${refNo} ነው። ቁጥሩ ወደ ቅንጥብ ሰሌዳዎ ተቀድቷል።.`
-						);
-					})
-					.catch(() => {
-						message.success(
-							`ምርት በተሳካ ሁኔታ ተፈጥሯል። የእርስዎ የመክፈያ ቁጥር ${refNo} ነው። ቁጥሩ ወደ ቅንጥብ ሰሌዳዎ ተቀድቷል።.`
-						);
-					});
+				message.success(
+					`ምርት በተሳካ ሁኔታ ተፈጥሯል። የእርስዎ የመክፈያ ቁጥር ${refNo} ነው። ቁጥሩ ወደ ቅንጥብ ሰሌዳዎ ተቀድቷል።.`
+				);
 
 				// Reload the page after 10 seconds
 				setTimeout(() => {
