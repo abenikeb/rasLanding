@@ -4,6 +4,7 @@ import Image from "next/image";
 import { message } from "antd";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { unstable_noStore as noStore } from "next/cache";
 import {
 	TagIcon,
 	DocumentTextIcon,
@@ -231,6 +232,7 @@ function Contact() {
 	};
 
 	const findStudentData = async () => {
+		noStore();
 		try {
 			const response = await axios.get(
 				`http://rasynergy.et/api/users/find-students?student_id=${formState.student_id}`
