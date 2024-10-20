@@ -13,6 +13,7 @@
 	max-width: 900px;
 	margin: 3rem auto;
 	font-family: "Noto Sans Ethiopic", sans-serif;
+	border: 1px #424242 !important;
 }
 
 .custom-form-content {
@@ -641,7 +642,7 @@
 /* General Styling for Address Section */
 .info-box {
 	background-color: #fff;
-	padding: 2rem;
+	padding: 1.5rem 1.5rem !important;
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
 }

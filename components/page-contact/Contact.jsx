@@ -15,6 +15,7 @@ function Contact() {
 
 	const [studentData, setStudentData] = useState(null);
 	const [loading, setLoading] = useState(false);
+	const [submitLoading, setsubmitLoading] = useState(false);
 
 	const [formState, setFormState] = useState({
 		name: "",
@@ -73,7 +74,7 @@ function Contact() {
 			phone: phoneError,
 		}));
 
-		return phoneError === ""; // Return true if valid, false if not
+		return phoneError === "";
 	};
 
 	const calculateActualPrice = (quantity, single_price, flatRate, shipping) => {
@@ -162,6 +163,7 @@ function Contact() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setsubmitLoading(true);
 
 		if (formErrors.phone) {
 			return;
@@ -173,7 +175,6 @@ function Contact() {
 		};
 
 		try {
-			setLoading(true);
 			const { data } = await axios.post(
 				"http://rasynergy.et/api/product-post/store",
 				bodyData,
@@ -189,13 +190,13 @@ function Contact() {
 			if (data.code === "0") {
 				const refNo = bodyData.biller_ref_no;
 				message.success(
-					`ምርት በተሳካ ሁኔታ ተፈጥሯል። የእርስዎ የመክፈያ ቁጥር ${refNo} ነው። ቁጥሩ ወደ ቅንጥብ ሰሌዳዎ ተቀድቷል።.`
+					`ውድ ደንበኛችን በተሳካ ሁኔታ አገልግሎቱን ገዝተዋል። የእርስዎ የመክፈያ ቁጥር ${refNo} ነው። ቁጥሩ ወደ ቅንጥብ ሰሌዳዎ ተቀድቷል።.`
 				);
 
 				// Reload the page after 10 seconds
 				setTimeout(() => {
 					window.location.reload();
-				}, 20000); // 10-second delay
+				}, 20000);
 			} else {
 				message.error("Error creating product");
 				console.error("Error creating product", data);
@@ -204,7 +205,7 @@ function Contact() {
 			message.error("Error creating product");
 			console.error("Request failed", error.response || error);
 		} finally {
-			setLoading(false);
+			setsubmitLoading(false);
 		}
 	};
 
@@ -217,6 +218,7 @@ function Contact() {
 
 	const findStudentData = async (e) => {
 		e.preventDefault();
+		setLoading(true);
 		try {
 			const response = await axios.get(
 				`http://rasynergy.et/api/users/find-students?student_id=${formState.student_id}`
@@ -241,9 +243,12 @@ function Contact() {
 				user_id: response.data.data.student_user_id,
 			}));
 
+			setLoading(false);
+
 			// generatebiller_ref_no();
 		} catch (error) {
 			message.error("Failed to fetch items");
+			setLoading(false);
 		}
 	};
 
@@ -251,72 +256,20 @@ function Contact() {
 		<section className="-mt-5 contact section-padding">
 			<div className="container">
 				<div className="row">
-					{/* Address */}
-					<div className="col-lg-4">
-						<div className="sec-head info-box full-width md-mb40">
-							<h2 className="contact-title">አድራሻ</h2>
-							<div className="morinfo mt-20 pb-30 bord-thin-bottom secondary-color">
-								<h6 className="mb-15 section-title">ዋና ቅርንጫፍ አድራሻ</h6>
-								<p className="address-details">
-									የካ ኮተቤ 02 የኢትዮጵያ ንግድ ባንክ 2ኛ ፎቅ, #207
-								</p>
-
-								{/* <!-- Main Branch Phone --> */}
-								<div className="contact-info mt-15">
-									<h6 className="contact-title">ስልክ</h6>
-									<p>
-										<a href="tel:+251906904646" className="contact-link">
-											+251 9 06 90 46 46 / +251 925546527
-										</a>
-									</p>
-								</div>
-
-								{/* <!-- Main Branch Email --> */}
-								<div className="contact-info mt-20">
-									<h6 className="contact-title">ኢሜይል</h6>
-									<p>
-										<a
-											href="mailto:support@brighsacco.com"
-											className="contact-link">
-											info@rasynergy.com
-										</a>
-									</p>
-								</div>
-							</div>
-
-							{/* <!-- Branch Address Section --> */}
-
-							{/* <!-- Social Media Icons --> */}
-							<div className="social-icon mt-50">
-								<a href="https://www.facebook.com/BrightSaccoOfficial">
-									<i className="fab fa-facebook-f"></i>
-								</a>
-								<a href="https://t.me/BrightSaccoLTD">
-									<i className="fab fa-telegram"></i>
-								</a>
-								<a href="https://t.me/brightsacco">
-									<i className="fab fa-telegram"></i>
-								</a>
-								<a href="#0">
-									<i className="fab fa-instagram"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-
-					<div className="col-lg-8 -mt-5">
+					<div className="col-lg-8 -mt-40">
 						<div
 							id="form_contact"
-							className="form-container sec-head info-box full-width md-mb80">
+							className="sec-head info-box full-width md-mb80">
 							<h3 className="mb-15 secondary-color">
 								{" "}
-								<b>ዲጅታል ካርዱን እንዴት ላግኝ?</b>
+								<b>የምታቀርቡትን አገልግሎት እንዴት ላግኝ?</b>
 							</h3>
 
 							<p className="address-details mb-20">
-								<span className="main-color">በጣም ቀላል ነው!</span> በቅድሚያ ከታች በምስሉ
-								ላይ እንደምትመለከቱት ወደ ቴሌብር በመሄድ የተማሪውን መታወቂያ ቁጥር ያስገባሉ : ከከፈሉም በኋላ እኛ
-								በሁለት ቀናት ውስጥ ያሉበት ድረስ እናደርሳለን ወይም በትምርት ቤቶ አማካኝነት እንልካለን::
+								<span className="main-color">በጣም ቀላል ነው!</span> በቅድሚያ የተማሪውን
+								መታወቂያ ቁጥር ከታች ቅጽ ላይ በመሙላት የሚያገኙትን የመክፈያ ቁጥር በማያዝ ከታች በምስሉ ላይ
+								እንደምትመለከቱት ወደ ቴሌብር በመሄድ ያስገባሉ : ከከፈሉም በኋላ እኛ በሁለት ቀናት ውስጥ ያሉበት
+								ድረስ እናደርሳለን ወይም በትምርት ቤቶ አማካኝነት እንልካለን::
 							</p>
 
 							<Image
@@ -328,7 +281,11 @@ function Contact() {
 							<div className="sec-bottoms">________________</div>
 						</div>
 						{/* Form Field */}
-						<div className="custom-form-container">
+						<div className="custom-form-container form-container">
+							<h3 className="mb-15 secondary-color">
+								{" "}
+								<b>እዚህ ይመዝገቡ</b>
+							</h3>
 							<div className="custom-form-content">
 								<form onSubmit={findStudentData} className="custom-form-group">
 									<label htmlFor="student_id" className="custom-form-label">
@@ -348,7 +305,7 @@ function Contact() {
 										<button
 											type="submit"
 											className="custom-form-button-primary">
-											ያረጋግጡ
+											{loading ? <>Loading...</> : <>ያረጋግጡ</>}
 										</button>
 									</div>
 									{studentData && (
@@ -476,10 +433,63 @@ function Contact() {
 										<button
 											loading={loading}
 											className="custom-form-button-primary">
-											የመረጡትን ያስገቡ
+											{submitLoading ? <>Loading...</> : <>የመረጡትን ያስገቡ</>}
 										</button>
 									</div>
 								</form>
+							</div>
+						</div>
+					</div>
+
+					{/* Address */}
+					<div className="col-lg-4">
+						<div className="sec-head info-box full-width md-mb40">
+							<h2 className="contact-title">አድራሻ</h2>
+							<div className="morinfo mt-20 pb-30 bord-thin-bottom secondary-color">
+								<h6 className="mb-15 section-title">ዋና ቅርንጫፍ አድራሻ</h6>
+								<p className="address-details">
+									የካ ኮተቤ 02 የኢትዮጵያ ንግድ ባንክ 2ኛ ፎቅ, #207
+								</p>
+
+								{/* <!-- Main Branch Phone --> */}
+								<div className="contact-info mt-15">
+									<h6 className="contact-title">ስልክ</h6>
+									<p>
+										<a href="tel:+251906904646" className="contact-link">
+											+251 9 06 90 46 46 / +251 925546527
+										</a>
+									</p>
+								</div>
+
+								{/* <!-- Main Branch Email --> */}
+								<div className="contact-info mt-20">
+									<h6 className="contact-title">ኢሜይል</h6>
+									<p>
+										<a
+											href="mailto:support@brighsacco.com"
+											className="contact-link">
+											info@rasynergy.com
+										</a>
+									</p>
+								</div>
+							</div>
+
+							{/* <!-- Branch Address Section --> */}
+
+							{/* <!-- Social Media Icons --> */}
+							<div className="social-icon mt-50">
+								<a href="https://www.facebook.com/BrightSaccoOfficial">
+									<i className="fab fa-facebook-f"></i>
+								</a>
+								<a href="https://t.me/BrightSaccoLTD">
+									<i className="fab fa-telegram"></i>
+								</a>
+								<a href="https://t.me/brightsacco">
+									<i className="fab fa-telegram"></i>
+								</a>
+								<a href="#0">
+									<i className="fab fa-instagram"></i>
+								</a>
 							</div>
 						</div>
 					</div>
