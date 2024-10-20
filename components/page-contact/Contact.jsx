@@ -4,7 +4,6 @@ import Image from "next/image";
 import { message } from "antd";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { unstable_noStore as noStore } from "next/cache";
 import {
 	TagIcon,
 	DocumentTextIcon,
@@ -231,8 +230,8 @@ function Contact() {
 		return uniqueNumber;
 	};
 
-	const findStudentData = async () => {
-		noStore();
+	const findStudentData = async (e) => {
+		e.preventDefault();
 		try {
 			const response = await axios.get(
 				`http://rasynergy.et/api/users/find-students?student_id=${formState.student_id}`
@@ -344,9 +343,9 @@ function Contact() {
 							<div className="sec-bottoms">________________</div>
 						</div>
 						{/* Form Field */}
-						<form onSubmit={handleSubmit} className="custom-form-container">
+						<div className="custom-form-container">
 							<div className="custom-form-content">
-								<div className="custom-form-group">
+								<form onSubmit={findStudentData} className="custom-form-group">
 									<label htmlFor="student_id" className="custom-form-label">
 										የተማሪው ID <span className="required-field">*</span>
 									</label>
@@ -362,8 +361,7 @@ function Contact() {
 											onChange={handleChange}
 										/>
 										<button
-											type="button"
-											onClick={findStudentData}
+											type="submit"
 											className="custom-form-button-primary">
 											ያረጋግጡ
 										</button>
@@ -373,128 +371,132 @@ function Contact() {
 											{studentData.first_name} {studentData.last_name}
 										</div>
 									)}
-								</div>
+								</form>
 
-								<div className="custom-form-group">
-									<label htmlFor="item_id" className="custom-form-label-center">
-										የሚገዙትን እቃ ይምረጡ{" "}
-										<span className="custom-req-label">
-											{" "}
-											(አስቀድመው ተማሪው መኖሩን ያረጋግጡ)
-										</span>
-									</label>
-									{/* <TagIcon className="custom-form-icon-option" /> */}
-									<select
-										id="item_id"
-										name="item_id"
-										className="custom-form-select-field"
-										value={formState.item_id}
-										onChange={(e) => {
-											const selectedIndex = e.target.selectedIndex - 1; // Adjust for "Select an item" option
-											const selectedItemId = e.target.value;
-											handleItemChange(selectedItemId, selectedIndex);
-										}}>
-										<option value="">የሚገዙትን እቃ ይምረጡ</option>
-										{items.map((item, index) => (
-											<option key={index} value={item.id}>
-												{item.item_name}
-											</option>
-										))}
-										x
-									</select>
-								</div>
+								<form onSubmit={handleSubmit}>
+									<div className="custom-form-group">
+										<label
+											htmlFor="item_id"
+											className="custom-form-label-center">
+											የሚገዙትን እቃ ይምረጡ{" "}
+											<span className="custom-req-label">
+												{" "}
+												(አስቀድመው ተማሪው መኖሩን ያረጋግጡ)
+											</span>
+										</label>
+										{/* <TagIcon className="custom-form-icon-option" /> */}
+										<select
+											id="item_id"
+											name="item_id"
+											className="custom-form-select-field"
+											value={formState.item_id}
+											onChange={(e) => {
+												const selectedIndex = e.target.selectedIndex - 1; // Adjust for "Select an item" option
+												const selectedItemId = e.target.value;
+												handleItemChange(selectedItemId, selectedIndex);
+											}}>
+											<option value="">የሚገዙትን እቃ ይምረጡ</option>
+											{items.map((item, index) => (
+												<option key={index} value={item.id}>
+													{item.item_name}
+												</option>
+											))}
+											x
+										</select>
+									</div>
 
-								{isItemSelect && (
-									<>
-										{/* Quantity, Price, and Total */}
-										<div className="custom-form-checkout-summary">
-											<div className="checkout-item">
-												<span className="checkout-label">ነጠላ ዋጋ:</span>
-												<span className="checkout-value">
-													{formState.single_price
-														? `${formState.single_price} Birr`
-														: "-"}
-												</span>
-											</div>
-
-											<div className="checkout-item">
-												<span className="checkout-label">ብዛት:</span>
-												<span className="checkout-value">
-													{formState.quantity || "-"}
-												</span>
-											</div>
-
-											{/* Shipping and Flat Rate */}
-											<div className="checkout-item">
-												<span className="checkout-label">መላኪያ ይፈልጋሉ:</span>
-												<span>
-													<input
-														id="shipping"
-														name="shipping"
-														type="checkbox"
-														className="checkout-value"
-														checked={formState.shipping}
-														onChange={handleChange}
-													/>
-												</span>
-											</div>
-
-											{formState.shipping && (
+									{isItemSelect && (
+										<>
+											{/* Quantity, Price, and Total */}
+											<div className="custom-form-checkout-summary">
 												<div className="checkout-item">
-													<span className="checkout-label">የመላኪያ ዋጋ:</span>
+													<span className="checkout-label">ነጠላ ዋጋ:</span>
 													<span className="checkout-value">
-														{formState.flatRate
-															? `${formState.flatRate} Birr`
+														{formState.single_price
+															? `${formState.single_price} Birr`
 															: "-"}
 													</span>
 												</div>
-											)}
 
-											<div className="checkout-item total">
-												<span className="checkout-label">ጠቅላላ ዋጋ:</span>
-												<span className="checkout-value">
-													{formState.actual_price
-														? `${formState.actual_price} Birr`
-														: "-"}
-												</span>
-											</div>
-										</div>
+												<div className="checkout-item">
+													<span className="checkout-label">ብዛት:</span>
+													<span className="checkout-value">
+														{formState.quantity || "-"}
+													</span>
+												</div>
 
-										{/* Phone Number Input */}
-										<div className="custom-form-grid">
-											<div className="custom-form-group">
-												<label htmlFor="phone" className="custom-form-label">
-													የምናገኝዎን ስልክ ያስገቡ{" "}
-													<span className="required-field">*</span>
-												</label>
-												<input
-													id="phone"
-													name="phone"
-													type="text"
-													className="custom-form-input-field"
-													placeholder="ስልኮትን ያስገቡ"
-													value={formState.phone}
-													onChange={handlePhoneChange}
-													onBlur={validatePhoneNumber}
-													required
-												/>
-												{formErrors.phone && (
-													<p className="error-message">{formErrors.phone}</p>
+												{/* Shipping and Flat Rate */}
+												<div className="checkout-item">
+													<span className="checkout-label">መላኪያ ይፈልጋሉ:</span>
+													<span>
+														<input
+															id="shipping"
+															name="shipping"
+															type="checkbox"
+															className="checkout-value"
+															checked={formState.shipping}
+															onChange={handleChange}
+														/>
+													</span>
+												</div>
+
+												{formState.shipping && (
+													<div className="checkout-item">
+														<span className="checkout-label">የመላኪያ ዋጋ:</span>
+														<span className="checkout-value">
+															{formState.flatRate
+																? `${formState.flatRate} Birr`
+																: "-"}
+														</span>
+													</div>
 												)}
-											</div>
-										</div>
-									</>
-								)}
-							</div>
 
-							<div className="custom-form-actions">
-								<button
-									loading={loading}
-									className="custom-form-button-primary">
-									የመረጡትን ያስገቡ
-								</button>
+												<div className="checkout-item total">
+													<span className="checkout-label">ጠቅላላ ዋጋ:</span>
+													<span className="checkout-value">
+														{formState.actual_price
+															? `${formState.actual_price} Birr`
+															: "-"}
+													</span>
+												</div>
+											</div>
+
+											{/* Phone Number Input */}
+											<div className="custom-form-grid">
+												<div className="custom-form-group">
+													<label htmlFor="phone" className="custom-form-label">
+														የምናገኝዎን ስልክ ያስገቡ{" "}
+														<span className="required-field">*</span>
+													</label>
+													<input
+														id="phone"
+														name="phone"
+														type="text"
+														className="custom-form-input-field"
+														placeholder="ስልኮትን ያስገቡ"
+														value={formState.phone}
+														onChange={handlePhoneChange}
+														onBlur={validatePhoneNumber}
+														required
+													/>
+													{formErrors.phone && (
+														<p className="error-message">{formErrors.phone}</p>
+													)}
+												</div>
+											</div>
+										</>
+									)}
+
+									<div className="custom-form-actions">
+										<button
+											loading={loading}
+											className="custom-form-button-primary">
+											የመረጡትን ያስገቡ
+										</button>
+									</div>
+								</form>
 							</div>
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>

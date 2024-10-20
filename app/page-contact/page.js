@@ -1,3 +1,4 @@
+// "use server";
 import generateStylesheetObject from "@/common/generateStylesheetsObject";
 import Lines from "@/components/common/Lines";
 import ProgressScroll from "@/components/common/ProgressScroll";
@@ -24,7 +25,7 @@ export const metadata = {
 	},
 };
 
-export default function Home() {
+export default async function Home() {
 	return (
 		<body>
 			{/* <LoadingScreen /> */}
