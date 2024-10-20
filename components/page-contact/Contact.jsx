@@ -189,13 +189,12 @@ function Contact() {
 			if (data.code === "0") {
 				const refNo = bodyData.biller_ref_no;
 				message.success(
-					`ምርት በተሳካ ሁኔታ ተፈጥሯል። የእርስዎ የመክፈያ ቁጥር ${refNo} ነው። ቁጥሩ ወደ ቅንጥብ ሰሌዳዎ ተቀድቷል።.`
+					`ውድ ደንበኛችን በተሳካ ሁኔታ አገልግሎቱን ገዝተዋል:: የእርስዎ የመክፈያ ቁጥር ${refNo} ነው። ቁጥሩ ወደ ቅንጥብ ሰሌዳዎ ተቀድቷል።.`
 				);
 
-				// Reload the page after 10 seconds
 				setTimeout(() => {
 					window.location.reload();
-				}, 20000); // 10-second delay
+				}, 15000); 
 			} else {
 				message.error("Error creating product");
 				console.error("Error creating product", data);
