@@ -135,8 +135,7 @@ function Navbar() {
 					</span>
 				</button>
 
-				<div className={`navbar-collapse collapse  ${isNavOpen ? "show" : ""}`}>
-					{/* Your navigation content goes here */}
+				<div className={`navbar-collapse collapse  ${isNavOpen ? "" : "show"}`}>
 					<ul className="navbar-nav">
 						<li className="nav-item">
 							<Link
