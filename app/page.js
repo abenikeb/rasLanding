@@ -16,6 +16,7 @@ import About from "@/components/home-personal/About";
 import Services from "@/components/home-personal/Services";
 import Skills from "@/components/home-personal/Skills";
 import Portfolio from "@/components/home-personal/Portfolio";
+import Contact from "@/components/page-contact/Contact_home";
 
 export const metadata = {
 	title: "Rasynergy",
@@ -45,6 +46,7 @@ export default function Home() {
 						{/* <div className="gradient" /> */}
 						<Header />
 						<Marq />
+						<Contact />
 						<About />
 						<div className="sec-bottoms"></div>
 						<Services />
