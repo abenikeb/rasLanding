@@ -176,7 +176,7 @@ function Contact() {
 
 		try {
 			const { data } = await axios.post(
-				"http://rasynergy.et/api/product-post/store",
+				"https://rasynergy.et/api/product-post/store",
 				bodyData,
 				{
 					headers: {
@@ -221,7 +221,7 @@ function Contact() {
 		setLoading(true);
 		try {
 			const response = await axios.get(
-				`http://rasynergy.et/api/users/find-students?student_id=${formState.student_id}`
+				`https://rasynergy.et/api/users/find-students?student_id=${formState.student_id}`
 			);
 			setItems(response.data.data.items);
 
