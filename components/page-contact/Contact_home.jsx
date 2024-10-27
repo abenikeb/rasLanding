@@ -42,7 +42,7 @@ function Contact() {
 		quantity: 1,
 		single_price: 0,
 		shipping: false,
-		flatRate: 10,
+		flatRate: 120,
 	});
 
 	const [formErrors, setFormErrors] = useState({
