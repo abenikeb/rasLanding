@@ -253,7 +253,7 @@ function Contact() {
 	};
 
 	return (
-		<section className="mt-30 contact section-padding">
+		<section className="mt-30 contact">
 			<div className="container">
 				<div className="row">
 					<div className="col-lg-8 -mt-40">
@@ -313,7 +313,8 @@ function Contact() {
 									</div>
 									{studentData && (
 										<div className="custom-form-student-info">
-											{studentData.first_name} {studentData.last_name}
+											{studentData.first_name} {studentData.middle_name}{" "}
+											{studentData.last_name}
 										</div>
 									)}
 								</form>

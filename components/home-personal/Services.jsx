@@ -14,7 +14,7 @@ function Services() {
 						</div>
 						<div className="ml-auto vi-more secondary-color">
 							<a
-								href="/page-services"
+								href="/page-about"
 								className="butn butn-sm butn-bord-2nd radius-30 secondary-color">
 								<span>ሁሉንም ይመልከቱ</span>
 							</a>
@@ -35,9 +35,9 @@ function Services() {
 									በዚህም በትምህርት ዘርፉ ላይ ከፍተኛ ሚና መጫወት።
 								</p>
 							</div>
-							<a href="/page-services-details" className="mt-100">
+							{/* <a href="/page-services-details" className="mt-100">
 								<span className="ti-arrow-top-right"></span>
-							</a>
+							</a> */}
 						</div>
 					</div>
 					<div className="col-lg-4">
@@ -54,9 +54,9 @@ function Services() {
 									መፍቲዎችን ማቅረብ ነው::
 								</p>
 							</div>
-							<a href="/page-services-details" className="mt-100">
+							{/* <a href="/page-services-details" className="mt-100">
 								<span className="ti-arrow-top-right"></span>
-							</a>
+							</a> */}
 						</div>
 					</div>
 					<div className="col-lg-4">
@@ -71,9 +71,9 @@ function Services() {
 									አስተማማኝ ምርቶችን እና አገልግሎቶችን በማቅረብ ቤተሰቦችን እና የትምህርት ተቋማትን ማበረታታት።
 								</p>
 							</div>
-							<a href="/page-services-details" className="mt-100">
+							{/* <a href="/page-services-details" className="mt-100">
 								<span className="ti-arrow-top-right"></span>
-							</a>
+							</a> */}
 						</div>
 					</div>
 				</div>

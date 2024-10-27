@@ -17,7 +17,7 @@
 }
 
 .custom-form-content {
-	margin-bottom: 2rem;
+	margin-bottom: 0.5rem;
 }
 
 .custom-form-group {
@@ -310,8 +310,9 @@
 	line-height: 1.8;
 	margin-bottom: 20px; /* or adjust as per preference */
 	word-spacing: 1px;
-	font-size: 1.1rem; /* Adjust the size to your preference */
+	font-size: 1rem; /* Adjust the size to your preference */
 	color: #2e2d2d;
+	padding: 1px 5px !important;
 }
 
 .text-bright {
@@ -4593,7 +4594,7 @@ body.loaded {
 }
 
 .fixed-height-card {
-	height: 550px; /* Set your desired fixed height */
+	height: 400px; /* Set your desired fixed height */
 	overflow: hidden;
 }
 

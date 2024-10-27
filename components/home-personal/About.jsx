@@ -4,6 +4,9 @@ function About() {
 	return (
 		<section className="about-author section-padding">
 			<div className="container with-pad">
+				<h6 className="sub-titles main-color mb-30 -mt-40">
+					ስለ <span className="secondary-color">እኛ</span>{" "}
+				</h6>
 				<div className="row lg-marg">
 					<div className="col-lg-5 valign">
 						<div className="profile-img">
@@ -14,9 +17,6 @@ function About() {
 					</div>
 					<div className="col-lg-7 valign">
 						<div className="cont">
-							<h6 className="sub-titles main-color mb-30">
-								ስለ <span className="secondary-color">እኛ</span>{" "}
-							</h6>
 							<div className="text secondary-color">
 								<h4 className="about-us-content text-bright mb-30">
 									ራስሲነርጂ{" "}
@@ -43,7 +43,7 @@ function About() {
 									</a>
 									<span className="icon ti-arrow-top-right"></span>
 								</div>
-								<div className="numbers mt-50">
+								{/* <div className="numbers mt-50">
 									<div className="row lg-marg">
 										<div className="col-md-6">
 											<div className="item bord-thin-top bord-thin-right pt-30 d-flex align-items-end mt-20">
@@ -72,7 +72,7 @@ function About() {
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> */}
 							</div>
 						</div>
 					</div>

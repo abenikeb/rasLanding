@@ -44,9 +44,9 @@ function Header() {
 									</div>
 									<div className="d-flex align-items-center mt-60">
 										<a
-											href="/page-contact#form_contact"
+											href="#form_contact"
 											className="butn butn-md butn-bord radius-30 secondary-color">
-											<span className="text">ሊያገኙን ይፈልጋሉ?</span>
+											<span className="text">አገልግሎታችሁን እንዴት ላግኝ?</span>
 										</a>
 										<div className="icon-img-60 ml-20">
 											<img
