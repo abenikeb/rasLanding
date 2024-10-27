@@ -75,24 +75,49 @@ function Portfolio() {
 							<div className="col-lg-5">
 								<div className="cont">
 									<div>
-										<div className="mb-15">
-											<a href="/portfolio-grid" className="tag">
-												ዲጂታል
-											</a>
-											<a href="/portfolio-grid" className="tag">
-												መታወቂያ
-											</a>
-										</div>
+										<h4>የትምህርት ቤት ቦርሳዎችና እና ዩኒፎርሞች</h4>
+									</div>
+									<br />
+									<div>
+										<p>
+											የተማሪዎች የቤተሰብን አቅም በመጠነና እኩልነትን ባሰፈነ መርሃ ግብራችን ውስጥ ከምናቀርባቸው
+											ግበቶች ዩኒፎርም የእስፖርት ልብሶች ቦርሳ የምሳቃ መያዣን ጨምሮ እንዲሁም ጠንካራ ጫማዎችን 
+											ከዩኒፎርማቸው ጋር ተመሳሳይ የሆኑ የተማሪው ስምና የትምህርት ቤቱን ሎጎ ያካተተ
+											ከማዘጋጀታችንም በላይ በተማሪው በመለያ ቁጥር ሲሸመቱ የ30% ቅናሽ ማድረጋችንን ስናበስር
+											በደስታ ነው።
+										</p>
+										<a href="/portfolio-gallery" className="underline mt-15">
+											<span className="text main-color sub-title">
+												ዝርዝሮችን ይመልከቱ <i className="ti-arrow-top-right"></i>
+											</span>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div className="col-lg-7">
+								<div className="img">
+									<img src="/assets/imgs/works/1/2.jpg" alt="" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className="card-item sub-bg">
+						<div className="row">
+							<div className="col-lg-5">
+								<div className="cont">
+									<div>
 										<h4>የተማሪዎች ዲጂታል መታወቂያ ካርድ</h4>
 									</div>
 									<br />
 									<div>
 										<p>
-											QR ኮድ ያለው የተማሪ ልጅዎትን መረጃ የሚይዝ የዲጂታል መታወቂያ ሲሆኑ ለወላጆች በቀላሉ
-											የልጆቻቸውን የት/ቤት መግቢያና እና መውጫ ሰዓት ባሉበት ቦታ ሆነው በስልካቸው አማካኝነት
-											መቆጣጠር የሚችሉበት መፍትሄ አቅርበናል::
+											የተማሪዎች ዲጅታል መታወቂያዎች ለቤተሰብ የመውጫና የመግቢያ ሰአቶችን ለወላጅ ከማሳወቅም
+											በላይ ከሰርቪስ ባስ መግባታቸውን እንዲሁም በሰላም መድረሳቸውን በSMS የማሳወቅቅ አቅም
+											ከመኖሩም በላይ ከትምህርት ቤት ቅጥር ውጪ ያሉትን እንቅስቃሴዎች የGPS መግለጫዎችን በግቢ
+											ውስጥ መጽሃፍት ቤት የስፖርት ቦታዎችን እና እንደ አስፈጊነቱ በታዘዘበት ቦታ ሁሉ መረጃዎችን
+											የመስጠት ብቃቱ ከፍተኛ ነው።
 										</p>
-										<a href="/project-details" className="underline mt-15">
+										<a href="/portfolio-gallery" className="underline mt-15">
 											<span className="text main-color sub-title">
 												ዝርዝሮችን ይመልከቱ <i className="ti-arrow-top-right"></i>
 											</span>
@@ -113,24 +138,14 @@ function Portfolio() {
 							<div className="col-lg-5">
 								<div className="cont">
 									<div>
-										<div className="mb-15">
-											<a href="/portfolio-grid" className="tag">
-												የተማሪዎች
-											</a>
-											<a href="/portfolio-grid" className="tag">
-												ቦርሳ
-											</a>
-										</div>
-										<h4>የትምህርት ቤት ቦርሳዎችና እና ዩኒፎርሞች</h4>
+										<h4>የእስፖርት ልብሶች</h4>
 									</div>
 									<br />
 									<div>
 										<p>
-											የትመህርት መገልገያ መሳሪያዎች የሆኑና የተማሪዎች ስሞች እና የት/ቤት አርማዎች በግል
-											የታተመባቸውን ቦርሳዎች፣ የምሳ ዕቃዎች ፣ ዩኒፎርሞች እና ደብተሮች በታላቅ ቅናሽ
-											አቅርበናል::
+											የተማሪዎች የቤተሰብን አቅም ባማከለ መልኩ የተማሪዎች የእስፖርት ልብሶችን አቅርበናል::
 										</p>
-										<a href="/project-details" className="underline mt-15">
+										<a href="/portfolio-gallery" className="underline mt-15">
 											<span className="text main-color sub-title">
 												ዝርዝሮችን ይመልከቱ <i className="ti-arrow-top-right"></i>
 											</span>
@@ -140,7 +155,7 @@ function Portfolio() {
 							</div>
 							<div className="col-lg-7">
 								<div className="img">
-									<img src="/assets/imgs/works/1/2.jpg" alt="" />
+									<img src="/assets/imgs/works/1/sport_main.jpg" alt="" />
 								</div>
 							</div>
 						</div>
@@ -151,14 +166,14 @@ function Portfolio() {
 							<div className="col-lg-5">
 								<div className="cont">
 									<div>
-										<div className="mb-15">
+										{/* <div className="mb-15">
 											<a href="/portfolio-grid" className="tag">
 												የህትመት
 											</a>
 											<a href="/portfolio-grid" className="tag">
 												አገልግሎቶች
 											</a>
-										</div>
+										</div> */}
 										<h4>የህትመት አገልግሎቶች</h4>
 									</div>
 									<br />
@@ -167,7 +182,7 @@ function Portfolio() {
 											ልዩ ልዩ ፍላጎቶችን ለማሟላት የተዘጋጁ መታወቂያ ካርዶችን፣ ብሮሹሮችን እና የማስተዋወቂያ
 											እቃዎችን ጨምሮ የተለያዩ የህትመት ስራዎችን በከፍተኛ ጥራት እናቀርባለን::
 										</p>
-										<a href="/project-details" className="underline mt-15">
+										<a href="/portfolio-gallery" className="underline mt-15">
 											<span className="text main-color sub-title">
 												ዝርዝሮችን ይመልከቱ <i className="ti-arrow-top-right"></i>
 											</span>
